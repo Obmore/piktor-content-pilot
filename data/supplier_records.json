@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "description": "Nyilvános gyártói oldalakból és dokumentumokból ellenőrzött, kézzel strukturált bemeneti adatok. A böngészős feldolgozás ebből készít új leírásjavaslatot.",
+  "records": [
+    {
+      "brand": "Schuller",
+      "manufacturer_sku": "50707",
+      "type": "painter_spatula",
+      "family": "KAI 2K",
+      "facts": {
+        "width_mm": {
+          "value": 100,
+          "source_url": "https://www.schuller.eu/hu/p/kai-2k"
+        },
+        "material": {
+          "value": "rozsdamentes",
+          "source_url": "https://www.schuller.eu/hu/p/kai-2k"
+        },
+        "uses": {
+          "value": [
+            "felületjavítás",
+            "régi festék eltávolítása",
+            "ragasztóanyag felhordása"
+          ],
+          "source_url": "https://www.schuller.eu/hu/p/kai-2k"
+        }
+      },
+      "sources": [
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-2k",
+          "title": "Schuller KAI 2K – hivatalos termékcsalád és méretsor",
+          "kind": "manufacturer"
+        }
+      ],
+      "reviewed_at": "2026-09-24",
+      "identity_source_url": "https://www.schuller.eu/hu/p/kai-2k"
+    },
+    {
+      "brand": "Schuller",
+      "manufacturer_sku": "50086",
+      "type": "multi_spatula",
+      "family": "KAI 5 IN ONE 2K",
+      "facts": {
+        "width_mm": {
+          "value": 75,
+          "source_url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k"
+        },
+        "material": {
+          "value": "rozsdamentes",
+          "source_url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k"
+        },
+        "handle": {
+          "value": "2K",
+          "source_url": "https://www.schuller.eu/download/?file=792"
+        },
+        "uses": {
+          "value": [
+            "szögek kihúzása",
+            "kisebb lyukak és repedések feltöltése",
+            "régi tapéta eltávolítása",
+            "vödrök vagy dobozok kinyitása",
+            "festőhengerek tisztítása"
+          ],
+          "source_url": "https://www.schuller.eu/download/?file=3459"
+        }
+      },
+      "sources": [
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k",
+          "title": "Schuller KAI 5 IN ONE 2K – hivatalos termékoldal",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://www.schuller.eu/download/?file=792",
+          "title": "Schuller 50086 – hivatalos termékismertető, 1. oldal",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://www.schuller.eu/download/?file=3459",
+          "title": "Schuller 50086 – hivatalos magyar használati útmutató, 1. oldal",
+          "kind": "manufacturer"
+        }
+      ],
+      "reviewed_at": "2026-09-24",
+      "identity_source_url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k"
+    },
+    {
+      "brand": "Schuller",
+      "manufacturer_sku": "50080",
+      "type": "glazing_knife",
+      "family": "KAI PATCH",
+      "facts": {
+        "uses": {
+          "value": [
+            "ablakok és ajtók üvegtábláinak beillesztése"
+          ],
+          "source_url": "https://www.schuller.eu/hu/p/kai-patch"
+        }
+      },
+      "sources": [
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-patch",
+          "title": "Schuller KAI PATCH – hivatalos termékoldal",
+          "kind": "manufacturer"
+        }
+      ],
+      "reviewed_at": "2026-09-24",
+      "identity_source_url": "https://www.schuller.eu/hu/p/kai-patch"
+    }
+  ]
+}

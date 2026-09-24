@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Piktor 94 · Termékadat-minta</title>
+  <style>
+:root { color-scheme: light; --ink:#263b43; --muted:#617178; --line:#dbe1e0; --green:#246b58; --paper:#f5f7f6; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial,"Segoe UI",sans-serif; font-size:16px; line-height:1.6; }
+button,input { font:inherit; color:inherit; }
+button,label.file-button { cursor:pointer; }
+button:disabled { cursor:not-allowed; opacity:.5; }
+a { color:var(--green); text-underline-offset:3px; }
+a:hover { text-decoration:none; }
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible { outline:3px solid #e49c40; outline-offset:3px; }
+[hidden] { display:none!important; }
+h1,h2,h3,h4 { line-height:1.3; margin:0 0 14px; }
+h1 { font-size:28px; }
+h2 { font-size:24px; }
+h3 { font-size:18px; }
+h4 { font-size:16px; }
+p { margin:0 0 16px; }
+.wrap { width:min(1280px,calc(100% - 64px)); margin-inline:auto; }
+.site-header { border-bottom:1px solid var(--line); background:white; }
+.site-header>.wrap { display:flex; align-items:center; gap:20px; min-height:72px; }
+.site-header strong { font-size:21px; letter-spacing:1px; }
+.site-header span { border-left:1px solid var(--line); padding-left:20px; color:var(--muted); }
+.breadcrumb { display:flex; flex-wrap:wrap; gap:10px; font-size:14px; color:var(--muted); margin:26px 0; }
+.page-heading { display:flex; justify-content:space-between; align-items:baseline; gap:20px; }
+.page-heading p { color:var(--muted); font-size:14px; }
+.toolbar { background:white; border:1px solid var(--line); padding:20px; border-radius:6px; margin:8px 0 12px; }
+.toolbar strong { font-size:16px; }
+.toolbar p { color:var(--muted); font-size:14px; margin:5px 0 16px; }
+.toolbar-actions { display:flex; flex-wrap:wrap; gap:10px; }
+.button { display:inline-flex; align-items:center; justify-content:center; padding:10px 15px; border:1px solid var(--green); border-radius:4px; background:var(--green); color:white; font-size:15px; line-height:1.4; text-decoration:none; }
+.button:hover:not(:disabled) { filter:brightness(.94); }
+.secondary { background:white; color:var(--green); border-color:#b7c7c2; }
+.file-button { position:relative; overflow:hidden; }
+.file-button input { position:absolute; inset:0; opacity:0; width:100%; cursor:pointer; }
+.file-button:focus-within { outline:3px solid #e49c40; outline-offset:3px; }
+.message { color:var(--muted); font-size:14px; min-height:24px; }
+.message.error { color:#9a351f; }
+.error-box,.notice { background:#fff4e3; border:1px solid #e6ceb0; border-radius:4px; padding:14px; }
+.tabs { display:flex; gap:25px; border-bottom:1px solid var(--line); margin:22px 0 28px; }
+.tabs button { border:0; border-bottom:3px solid transparent; padding:10px 2px 14px; background:none; color:var(--muted); font-size:16px; }
+.tabs button.active { color:var(--green); border-bottom-color:var(--green); font-weight:bold; }
+.product-layout { display:grid; grid-template-columns:225px minmax(0,1fr); gap:30px; }
+.product-sidebar { padding-right:24px; border-right:1px solid var(--line); }
+.product-sidebar>label { display:block; margin-bottom:8px; font-size:14px; }
+input[type=search],input[type=text] { border:1px solid #becbc6; border-radius:4px; background:white; padding:10px 12px; width:100%; }
+.product-list { display:flex; flex-direction:column; gap:8px; margin-top:17px; }
+.product-option { border:1px solid transparent; border-radius:4px; background:transparent; padding:12px; text-align:left; font-size:15px; line-height:1.5; }
+.product-option.active { border-color:#b6cdc3; background:#edf5f0; }
+.product-option:hover { background:#edf1ee; }
+.product-option small { display:block; font-size:13px; color:var(--muted); margin-top:7px; }
+.product-heading { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; }
+.product-heading .muted { font-size:14px; margin-bottom:7px; }
+.product-heading h2 { font-size:25px; }
+.badge { display:inline-block; padding:4px 9px; border-radius:4px; background:#e7f1ea; color:var(--green); font-size:13px; white-space:nowrap; }
+.badge.warning { background:#fff1dc; color:#865321; }
+.sku-line { display:flex; flex-wrap:wrap; gap:5px 25px; font-size:14px; margin-bottom:8px; }
+.external-link { display:inline-block; font-size:14px; margin-bottom:24px; }
+.product-overview { display:grid; grid-template-columns:240px minmax(0,1fr); gap:28px; }
+.image-panel,.description-panel { background:white; border:1px solid var(--line); border-radius:5px; padding:20px; }
+.image-panel { padding:16px; }
+.image-frame { display:flex; align-items:center; justify-content:center; height:200px; background:#f7f8f5; border:1px solid #e5e8e2; margin:0 0 12px; overflow:hidden; }
+.image-frame>p { padding:18px; color:var(--muted); font-size:14px; text-align:center; margin:0; }
+.image-frame img { display:block; max-width:100%; max-height:100%; object-fit:contain; }
+.image-panel .button { display:flex; width:100%; font-size:14px; padding:9px; margin-bottom:8px; }
+.image-panel .small { margin:12px 0; }
+.image-result { font-size:13px; overflow-wrap:anywhere; }
+.image-status.error { color:#9a351f; }
+.image-result ul { padding-left:18px; margin:8px 0 0; }
+.description-panel h4:not(:first-child) { margin-top:24px; }
+.description-panel .notice { font-size:14px; margin-top:18px; }
+.prose { overflow-wrap:anywhere; }
+.prose p { white-space:pre-line; }
+.prose p:last-child { margin-bottom:0; }
+.current-description { border-top:1px solid var(--line); padding-top:24px; margin-top:28px; }
+.current-description .prose { color:var(--muted); font-size:15px; }
+.current-description .small { margin-top:10px; }
+.evidence-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:30px; border-top:1px solid var(--line); padding-top:24px; margin-top:24px; }
+.evidence-grid ul { padding-left:19px; font-size:15px; margin-top:0; }
+.evidence-grid li { margin-bottom:9px; }
+.fact-list { margin:0; }
+.fact-list>div { display:grid; grid-template-columns:1fr 1.2fr; gap:14px; padding:9px 0; border-bottom:1px solid var(--line); font-size:14px; }
+.fact-list dt { color:var(--muted); }
+.fact-list dd { margin:0; }
+.fact-list a { margin-left:5px; }
+#shipping-weight { margin-top:14px; font-size:14px; }
+.sources { border-top:1px solid var(--line); padding-top:24px; margin-top:22px; }
+.sources ul { font-size:14px; padding-left:20px; }
+.sources li { margin-bottom:10px; }
+.sources a { overflow-wrap:anywhere; }
+.review-panel { border-top:1px solid var(--line); padding-top:18px; margin-top:25px; }
+summary { cursor:pointer; }
+.review-panel>label:not(.checkbox-label) { display:block; margin:16px 0 7px; font-size:14px; }
+.review-panel input[type=text] { max-width:330px; }
+.checkbox-label { display:flex; gap:9px; align-items:flex-start; margin:16px 0; font-size:14px; }
+.checkbox-label input { margin-top:5px; accent-color:var(--green); }
+#review-message { margin:10px 0 0; }
+.small { font-size:13px; }
+.muted { color:var(--muted); }
+.table-scroll { overflow-x:auto; border:1px solid var(--line); background:white; border-radius:4px; }
+table { border-collapse:collapse; width:100%; min-width:620px; text-align:left; font-size:14px; }
+th,td { padding:14px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { background:#edf2ee; }
+tr:last-child td { border-bottom:0; }
+.input-output { display:grid; grid-template-columns:1fr 1fr; gap:25px; margin:22px 0; }
+.input-output details { min-width:0; }
+pre { white-space:pre-wrap; overflow-wrap:anywhere; font:13px/1.5 monospace; background:#eaf0eb; padding:16px; max-height:500px; overflow:auto; }
+.image-rules { max-width:900px; border-top:1px solid var(--line); padding-top:25px; margin-top:30px; }
+.image-rules p,.image-rules a { font-size:14px; }
+.category-card { background:white; border:1px solid var(--line); padding:24px; border-radius:5px; margin-top:20px; max-width:950px; }
+.category-card h3 { font-size:21px; }
+.category-card .prose { margin:20px 0; }
+.category-card details { margin-top:20px; font-size:14px; }
+.category-card ul { padding-left:20px; }
+.category-card li { margin-bottom:8px; }
+footer { display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding:23px 0; margin-top:40px; color:var(--muted); font-size:14px; }
+footer button { border:0; background:none; text-decoration:underline; font-size:14px; }
+.skip-link:not(:focus) { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+.skip-link:focus { position:fixed; left:15px; top:15px; padding:15px; z-index:10; background:white; }
+@media(max-width:1050px) { .product-layout { grid-template-columns:190px minmax(0,1fr); gap:22px; } .product-sidebar { padding-right:17px; } .product-overview { grid-template-columns:1fr; } .image-panel { display:grid; grid-template-columns:180px 1fr; gap:8px 20px; align-items:start; } .image-panel h3 { grid-column:1/-1; } .image-frame { grid-column:1; grid-row:2/6; height:190px; } .image-panel .button,.image-panel .small,.image-result { grid-column:2; margin:0; } .evidence-grid { grid-template-columns:1fr; gap:20px; } .product-heading { flex-direction:column; gap:0; } .product-heading .badge { margin-bottom:14px; } }
+@media(max-width:700px) { .wrap { width:calc(100% - 30px); } .site-header>.wrap { gap:12px; min-height:62px; } .site-header strong { font-size:18px; } .site-header span { font-size:14px; padding-left:12px; } .breadcrumb { font-size:12px; margin:18px 0; gap:7px; } .page-heading { display:block; } h1 { font-size:25px; } .page-heading p { font-size:13px; } .toolbar { padding:16px; } .toolbar-actions .button { flex:1 1 auto; font-size:14px; } .tabs { gap:24px; } .tabs button { font-size:15px; } .product-layout { grid-template-columns:1fr; gap:24px; } .product-sidebar { border:0; padding:0; } .product-sidebar>input { max-width:380px; } .product-list { flex-direction:row; overflow-x:auto; padding-bottom:5px; } .product-option { min-width:200px; max-width:240px; font-size:14px; border-color:var(--line); background:white; } .product-heading h2 { font-size:24px; } .image-panel { grid-template-columns:145px 1fr; gap:9px 14px; } .image-frame { height:175px; } .image-panel .small { font-size:12px; } .description-panel { padding:18px; } .input-output { grid-template-columns:1fr; } .category-card { padding:18px; } footer { font-size:12px; } }
+@media(max-width:400px) { .image-panel { display:block; } .image-frame { height:200px; } .image-panel .button { margin:9px 0; } .image-panel .small { margin:12px 0; } .tabs { gap:18px; } .tabs button { font-size:14px; } .site-header span { font-size:13px; } }
+@media print { @page { size:A4; margin:15mm; } body { background:white; font-size:11pt; } .wrap { width:100%; } .site-header>.wrap { min-height:40px; } .toolbar,.message,.tabs,.product-sidebar,.review-panel,footer,.image-panel .button,.breadcrumb,.page-heading { display:none!important; } .product-layout { display:block; } .product-overview { grid-template-columns:200px 1fr; gap:20px; } .image-panel { display:block; } .image-frame { height:180px; } .product-heading h2 { font-size:20pt; } .product-overview>section,.evidence-grid>section,.category-card { break-inside:avoid; } .prose,.current-description .prose { font-size:10pt; } a { color:inherit; } .input-output { display:block; } pre { max-height:none; } }
+
+</style>
+
+
+
+
+</head>
+<body>
+  <a class="skip-link" href="#main">Ugrás a tartalomra</a>
+  <header class="site-header"><div class="wrap"><strong>PIKTOR 94</strong><span>Termékadat-minta</span></div></header>
+  <main id="main" class="wrap">
+    <nav class="breadcrumb" aria-label="Útvonal"><a href="https://piktor94.hu" target="_blank" rel="noopener noreferrer">Piktor 94</a><span>/</span><span>Schuller termékek</span><span>/</span><span>Spatulyák, glettvasak</span></nav>
+    <div class="page-heading"><h1>Termékleírások és hiányzó adatok</h1><p id="observed-at"></p></div>
+    <section class="toolbar" aria-label="Adatfeldolgozás">
+      <div><strong id="supplier-label">Gyártói adatok: beépített minta</strong><p id="supplier-summary">A feldolgozás cikkszám alapján párosít, és csak forrással rendelkező adatot használ.</p></div>
+      <div class="toolbar-actions"><label class="button secondary file-button">Gyártói JSON betöltése<input id="supplier-file" type="file" accept=".json,application/json"></label><button id="process-button" class="button" type="button">Adatok feldolgozása</button><button id="export-button" class="button secondary" type="button" disabled>Eredmény letöltése</button></div>
+    </section>
+    <p id="message" class="message" role="status" aria-live="polite">A szövegjavaslatok előállításához indítsa el a feldolgozást.</p>
+    <div id="load-error" class="error-box" hidden role="alert"></div>
+    <div class="tabs" role="tablist" aria-label="Nézetek">
+      <button id="tab-product" class="active" role="tab" aria-selected="true" aria-controls="panel-product" data-tab="product">Termékoldal</button>
+      <button id="tab-processing" role="tab" aria-selected="false" aria-controls="panel-processing" tabindex="-1" data-tab="processing">Feldolgozás</button>
+      <button id="tab-category" role="tab" aria-selected="false" aria-controls="panel-category" tabindex="-1" data-tab="category">Kategória</button>
+    </div>
+    <section id="panel-product" role="tabpanel" aria-labelledby="tab-product">
+      <div class="product-layout">
+        <aside class="product-sidebar"><label for="product-search">Termék keresése</label><input id="product-search" type="search" placeholder="Név vagy cikkszám…"><div id="product-list" class="product-list"></div></aside>
+        <article class="product-content">
+          <div class="product-heading"><div><p id="product-brand" class="muted"></p><h2 id="product-name"></h2></div><span id="match-status" class="badge"></span></div>
+          <p class="sku-line">Webshop-cikkszám: <strong id="shop-sku"></strong><span>Gyártói cikkszám: <strong id="manufacturer-sku"></strong></span></p>
+          <a id="shop-link" class="external-link" target="_blank" rel="noopener noreferrer">Meglévő termékoldal ↗</a>
+          <div class="product-overview">
+            <section class="image-panel" aria-labelledby="image-title">
+              <h3 id="image-title">Termékkép</h3>
+              <div id="image-frame" class="image-frame"><p id="image-placeholder">A termékkép nincs betöltve.</p><img id="product-image" hidden alt=""></div>
+              <p id="image-status" class="image-status small muted" role="status" aria-live="polite"></p>
+              <button id="retry-image-button" class="button secondary" type="button" hidden>Kép újrapróbálása</button>
+              <button id="load-image-button" class="button secondary" type="button">Meglévő kép megnyitása</button>
+              <button id="load-manufacturer-image-button" class="button secondary" type="button" hidden>Gyártói kép megnyitása</button>
+              <p id="manufacturer-image-info" class="small muted" hidden></p>
+              <label class="button secondary file-button">Helyi kép vizsgálata<input id="image-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif"></label>
+              <p class="small muted">A megnyitás nem igazolja a kép felhasználási jogát. Helyi fájl választásakor a kép a böngészőben marad.</p>
+              <div id="image-result" class="image-result"></div>
+            </section>
+            <section class="description-panel" aria-labelledby="description-title"><h3 id="description-title">Előállított termékleírás</h3><p id="output-placeholder" class="muted">A feldolgozás után itt jelenik meg a gyártói adatokból összeállított szöveg.</p><div id="generated-content" hidden><h4>Rövid leírás</h4><div id="proposed-short" class="prose"></div><h4>Részletes leírás</h4><div id="proposed-long" class="prose"></div></div><details id="processing-messages" class="notice" hidden><summary>Feldolgozási megjegyzések</summary><div id="processing-message-body"></div></details></section>
+          </div>
+          <section class="current-description"><h3>A meglévő oldal megfigyelése</h3><div id="current-description" class="prose"></div><p class="small muted">Nyilvános oldalon tett megfigyelés; nem az UNAS-adminisztráció mezőinek exportja.</p></section>
+          <div class="evidence-grid"><section><h3>Felhasznált adatok</h3><dl id="fact-list" class="fact-list"></dl><p id="shipping-weight"></p></section><section><h3 id="observation-title">A korábbi adatfelvétel megjegyzései</h3><p class="small muted">A jelenlegi feldolgozás eredményét a Felhasznált adatok mutatják.</p><ul id="unknown-list"></ul></section></div>
+          <section class="sources"><h3>Források</h3><ul id="source-list"></ul></section>
+          <details class="review-panel"><summary>Szöveg ellenőrzésének rögzítése</summary><label for="reviewer-name">Ellenőrző neve</label><input id="reviewer-name" type="text" maxlength="120" autocomplete="name"><label class="checkbox-label"><input id="source-confirmation" type="checkbox">Megnyitottam a forrásokat, és ellenőriztem ezt a szövegjavaslatot.</label><button id="review-button" class="button secondary" type="button">Ellenőrzés rögzítése</button><p id="review-message" class="small" role="status"></p></details>
+        </article>
+      </div>
+    </section>
+    <section id="panel-processing" role="tabpanel" aria-labelledby="tab-processing" hidden>
+      <h2>Feldolgozási eredmény</h2><p>A webshop-cikkszámok és a gyártói rekordok párosítása, a kihagyott adatok és az előállított tartalom.</p>
+      <div class="table-scroll"><table><thead><tr><th>Webshop-cikkszám</th><th>Gyártói cikkszám</th><th>Állapot</th><th>Megjegyzés</th></tr></thead><tbody id="processing-rows"></tbody></table></div>
+      <div class="input-output"><details><summary>Betöltött gyártói adatok</summary><pre id="supplier-json"></pre></details><details><summary>Előállított adatok</summary><pre id="output-json">Még nem futott feldolgozás.</pre></details></div>
+      <p class="small muted">A letölthető JSON szövegjavaslatokat és forráshivatkozásokat tartalmaz. Nem közvetlen UNAS-importfájl, és nem módosítja a webshopot.</p>
+      <section class="image-rules"><h3>A képvizsgálat szabályai</h3><p>A böngésző a megnyitott képfájl valódi szélességét és magasságát méri. A HTML-ben feltüntetett méret nem tekinthető fájlmérésnek. Fájlméret helyi kép esetén mérhető.</p><p>2026-ban a nem ruházati termékek képeinél 100 × 100 px a minimum. 2027. január 31-től 500 × 500 px lesz a minimum; erre már 2026-ban figyelmeztetés jelenhet meg. A megfelelés további feltételeit és a tényleges Merchant Center-üzenetet külön kell ellenőrizni.</p><a href="https://support.google.com/merchants/answer/12159030?hl=en" target="_blank" rel="noopener noreferrer">Google: a képkövetelmények változása ↗</a></section>
+    </section>
+    <section id="panel-category" role="tabpanel" aria-labelledby="tab-category" hidden><h2>Kategórialeírás-minta</h2><p>Rögzített, forrásokkal alátámasztott szövegminta a kiválasztott kategóriához.</p><div id="category-content"></div></section>
+    <footer><span>Piktor 94 · Termékadat-minta</span><button id="print-button" type="button">Nyomtatás / PDF</button></footer>
+  </main>
+<script>
+window.PILOT_DATA = {
+  "schema_version": 1,
+  "observed_at": "2026-09-24",
+  "products": [
+    {
+      "id": "schuller-s50707",
+      "brand": "Schuller",
+      "shop_sku": "S50707",
+      "manufacturer_sku": "50707",
+      "name": "Schuller KAI 2K rozsdamentes festőspatulya, 100 mm",
+      "category": "Spatulyák, glettvasak",
+      "shop_url": "https://piktor94.hu/SCHU-SPATULYA-ROZSDAMENTES-100MM-MUA-NYELLEL",
+      "current_description": "A 2026-09-24-én vizsgált nyilvános termékoldalon külön termékleírás nem látszott; a Product JSON-LD adataiból is hiányzott a leírás.",
+      "proposed_short": "100 mm széles, rozsdamentes festőspatulya javító- és festési munkákhoz. A Schuller KAI 2K sorozat tagja.",
+      "proposed_long": "A Schuller KAI 2K 100 mm-es festőspatulya festés előtti felületjavításhoz, régi festékrétegek eltávolításához és ragasztóanyagok felhordásához használható. Rozsdamentes kivitelű, munkaszélessége 100 mm.\n\nA KAI 2K sorozatban több méret szerepel; rendeléskor a szélességet és a cikkszámot együtt ellenőrizze. Ez a 100 mm-es változat a gyártónál 50707, a Piktor 94 webshopban S50707 cikkszámon szerepel.",
+      "facts": [
+        {
+          "label": "Munkaszélesség",
+          "value": "100 mm",
+          "source_url": "https://www.schuller.eu/hu/p/kai-2k"
+        },
+        {
+          "label": "Kivitel",
+          "value": "Rozsdamentes festőspatulya",
+          "source_url": "https://www.schuller.eu/hu/p/kai-2k"
+        },
+        {
+          "label": "Gyártói cikkszám",
+          "value": "50707",
+          "source_url": "https://www.schuller.eu/hu/p/kai-2k"
+        },
+        {
+          "label": "Termékcsalád felhasználási területei",
+          "value": "Felületjavítás, régi festék eltávolítása, ragasztóanyag felhordása",
+          "source_url": "https://www.schuller.eu/hu/p/kai-2k"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-2k",
+          "title": "Schuller KAI 2K – hivatalos termékcsalád és méretsor",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://piktor94.hu/SCHU-SPATULYA-ROZSDAMENTES-100MM-MUA-NYELLEL",
+          "title": "Piktor 94 – KAI 2K 100 mm; SKU a HTML és Product JSON-LD alapján",
+          "kind": "shop"
+        }
+      ],
+      "match_status": "exact",
+      "unknowns": [
+        "Nettó tömeg és csomagolt szállítási tömeg nem igazolt.",
+        "A képfelhasználási jogosultság nincs ellenőrizve."
+      ],
+      "image": {
+        "url": "https://piktor94.hu/img/94079/S50707/S50707.jpg?time=1770446288",
+        "width": null,
+        "height": null,
+        "rights": "unknown",
+        "declared_width": 600,
+        "declared_height": 277,
+        "measurement_note": "A HTML-galéria által megadott méret; a képfájl tényleges pixelmérete nem igazolt."
+      },
+      "brand_display": "Schuller Eh’klar",
+      "current_description_kind": "public_observation_not_unas_export",
+      "source_reviewed_at": "2026-09-24",
+      "variant": {
+        "width_mm": 100
+      },
+      "manufacturer_image": {
+        "url": "https://www.schuller.eu/download/?file=206&format=jpg&p=176",
+        "width": 3758,
+        "height": 1736,
+        "bytes": 346567,
+        "sha256": "0fa498bfa74d64ae43e9b2004c67e83e85974c1dd924774a53437c4283e8b8c9",
+        "measured_at": "2026-09-24",
+        "method": "Pillow decoded downloaded manufacturer file",
+        "source_url": "https://www.schuller.eu/hu/p/kai-2k",
+        "rights": "unknown",
+        "identity_note": "A gyártó termékcsaládhoz megadott képe; a 100 mm-es változat azonossága külön ellenőrizendő.",
+        "preview_url": "https://www.schuller.eu/upload/filecache/5070_17_b5ec5de5dfd32fc0817de2b1128f7098.jpg"
+      }
+    },
+    {
+      "id": "schuller-s50086",
+      "brand": "Schuller",
+      "shop_sku": "S50086",
+      "manufacturer_sku": "50086",
+      "name": "Schuller KAI 5 IN ONE 2K multifunkciós spatulya, 75 mm",
+      "category": "Spatulyák, glettvasak",
+      "shop_url": "https://piktor94.hu/SCHU-SPAKLI-ROZSDAM-TOBBFUNKCIOS",
+      "current_description": "A 2026-09-24-én vizsgált nyilvános termékoldalon külön termékleírás nem látszott; a Product JSON-LD adataiból is hiányzott a leírás.",
+      "proposed_short": "75 mm-es, rozsdamentes multifunkciós spatulya 2K markolattal. Felületjavításhoz, tapéta eltávolításához és festőhenger tisztításához is használható.",
+      "proposed_long": "A Schuller KAI 5 IN ONE 2K rozsdamentes multifunkciós spatulya 75 mm-es munkaszélességgel, 2K markolattal készül.\n\nA gyári használati útmutató öt feladatot mutat be: szögek kihúzását, kisebb lyukak és repedések feltöltését, régi tapéta eltávolítását, vödrök vagy dobozok kinyitását, valamint festőhengerek tisztítását. Így a felület előkészítésétől az eszközök tisztításáig több munkalépéshez használható.\n\nGyártói cikkszáma 50086; a Piktor 94 kínálatában S50086 azonosítóval található.",
+      "facts": [
+        {
+          "label": "Munkaszélesség",
+          "value": "75 mm",
+          "source_url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k"
+        },
+        {
+          "label": "Kivitel",
+          "value": "Rozsdamentes",
+          "source_url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k"
+        },
+        {
+          "label": "Markolat",
+          "value": "2K markolat",
+          "source_url": "https://www.schuller.eu/download/?file=792"
+        },
+        {
+          "label": "Gyártói cikkszám",
+          "value": "50086",
+          "source_url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k"
+        },
+        {
+          "label": "Gyári útmutatóban bemutatott feladatok",
+          "value": "Szögkihúzás, kisebb felülethibák kitöltése, tapéta eltávolítása, doboznyitás, hengertisztítás",
+          "source_url": "https://www.schuller.eu/download/?file=3459"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k",
+          "title": "Schuller KAI 5 IN ONE 2K – hivatalos termékoldal",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://www.schuller.eu/download/?file=792",
+          "title": "Schuller 50086 – hivatalos termékismertető, 1. oldal",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://www.schuller.eu/download/?file=3459",
+          "title": "Schuller 50086 – hivatalos magyar használati útmutató, 1. oldal",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://piktor94.hu/SCHU-SPAKLI-ROZSDAM-TOBBFUNKCIOS",
+          "title": "Piktor 94 – KAI 5 IN ONE 2K; SKU a HTML és Product JSON-LD alapján",
+          "kind": "shop"
+        }
+      ],
+      "match_status": "exact",
+      "unknowns": [
+        "Nettó tömeg és csomagolt szállítási tömeg nem igazolt.",
+        "A képfelhasználási jogosultság nincs ellenőrizve.",
+        "A régi ismertető és az újabb útmutató képe eltérő markolatot mutat; a szín és a markolatvég aktuális kialakítása nincs igazolva."
+      ],
+      "image": {
+        "url": "https://piktor94.hu/img/94079/S50086/S50086.jpg?time=1706193323",
+        "width": null,
+        "height": null,
+        "rights": "unknown",
+        "declared_width": 1000,
+        "declared_height": 506,
+        "measurement_note": "A HTML-galéria által megadott méret; a képfájl tényleges pixelmérete nem igazolt."
+      },
+      "brand_display": "Schuller Eh’klar",
+      "current_description_kind": "public_observation_not_unas_export",
+      "source_reviewed_at": "2026-09-24",
+      "variant": {
+        "width_mm": 75
+      },
+      "manufacturer_image": {
+        "url": "https://www.schuller.eu/download/?file=194&format=jpg&p=164",
+        "width": 3160,
+        "height": 1599,
+        "bytes": 371548,
+        "sha256": "7a5f09abe7dd3dce1f2d4dd1db3b24c481a84ebf4e0c0ad9c2598fea7f0342ee",
+        "measured_at": "2026-09-24",
+        "method": "Pillow decoded downloaded manufacturer file",
+        "source_url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k",
+        "rights": "unknown",
+        "identity_note": "Az adott gyártói termékoldalhoz tartozó letölthető kép; az aktuális beszállítói változattal egyeztetendő.",
+        "preview_url": "https://www.schuller.eu/upload/filecache/50086_17_88797ece5b4228d74dd6281615e59a0b.jpg"
+      }
+    },
+    {
+      "id": "schuller-s50080",
+      "brand": "Schuller",
+      "shop_sku": "S50080",
+      "manufacturer_sku": "50080",
+      "name": "Schuller KAI PATCH gittkés, üvegező spatulya",
+      "category": "Spatulyák, glettvasak",
+      "shop_url": "https://piktor94.hu/SCHU-SPAKLI-UVEGEZO",
+      "current_description": "A 2026-09-24-én vizsgált nyilvános termékoldalon külön termékleírás nem látszott; a Product JSON-LD adataiból is hiányzott a leírás.",
+      "proposed_short": "Üvegező gittkés ablakok és ajtók üvegtábláinak beillesztéséhez. Gyártói cikkszám: 50080.",
+      "proposed_long": "A Schuller KAI PATCH üvegező spatulya ablakok és ajtók üvegtábláinak beillesztéséhez készült gittkés. Gyártói cikkszáma 50080; a Piktor 94 webshopban S50080 azonosítóval rendelhető.",
+      "facts": [
+        {
+          "label": "Rendeltetés",
+          "value": "Ablakok és ajtók üvegtábláinak beillesztéséhez való gittkés",
+          "source_url": "https://www.schuller.eu/hu/p/kai-patch"
+        },
+        {
+          "label": "Gyártói cikkszám",
+          "value": "50080",
+          "source_url": "https://www.schuller.eu/hu/p/kai-patch"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-patch",
+          "title": "Schuller KAI PATCH – hivatalos termékoldal",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://piktor94.hu/SCHU-SPAKLI-UVEGEZO",
+          "title": "Piktor 94 – KAI PATCH; SKU a HTML és Product JSON-LD alapján",
+          "kind": "shop"
+        }
+      ],
+      "match_status": "exact",
+      "unknowns": [
+        "A hivatkozott gyártói oldalon munkaszélesség nincs megadva.",
+        "Anyagminőség és rozsdamentesség nem igazolt; más KAI termék tulajdonsága nem másolható ide.",
+        "Nettó tömeg és csomagolt szállítási tömeg nem igazolt.",
+        "A képfelhasználási jogosultság nincs ellenőrizve."
+      ],
+      "image": {
+        "url": "https://piktor94.hu/img/94079/S50080/S50080.jpg?time=1706193323",
+        "width": null,
+        "height": null,
+        "rights": "unknown",
+        "declared_width": 1000,
+        "declared_height": 572,
+        "measurement_note": "A HTML-galéria által megadott méret; a képfájl tényleges pixelmérete nem igazolt."
+      },
+      "brand_display": "Schuller Eh’klar",
+      "current_description_kind": "public_observation_not_unas_export",
+      "source_reviewed_at": "2026-09-24",
+      "manufacturer_image": {
+        "url": "https://www.schuller.eu/download/?file=192&p=162&format=jpg",
+        "width": 2914,
+        "height": 1345,
+        "bytes": 375966,
+        "sha256": "cfe79da03c7cedd7a56f5e9e8dfc99a958d2cfa7ff6a76ac1693b280ab282b41",
+        "measured_at": "2026-09-24",
+        "method": "Pillow decoded downloaded manufacturer file",
+        "source_url": "https://www.schuller.eu/hu/p/kai-patch",
+        "rights": "unknown",
+        "identity_note": "Az adott gyártói termékoldalhoz tartozó letölthető kép; az aktuális beszállítói változattal egyeztetendő.",
+        "preview_url": "https://www.schuller.eu/upload/filecache/50080_ae9eb44a97b50021ecd256e4a53a5d5a.jpg"
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": "schuller-spatulyak",
+      "name": "Spatulyák, glettvasak",
+      "url": "https://piktor94.hu/Spatulyak-glettvasak",
+      "current_description": "A 2026-09-24-i nyilvános kategóriaoldalon külön kategórialeírás nem látható. Az oldal 123 terméket jelez; ez a kategória kijelzett darabszáma, nem teljes állományellenőrzés eredménye.",
+      "proposed_description": "Festés előtti javításhoz, régi bevonatok eltávolításához vagy üvegezéshez keres szerszámot? Ebben a Schuller kategóriában festőspatulyák, multifunkciós spatulyák, gittkések és glettvasak között választhat.\n\nElőször a feladatot határozza meg, utána hasonlítsa össze a munkaszélességet és az adott terméknél feltüntetett kivitelt. A KAI 2K festőspatulyák több méretben szerepelnek a választékban. A KAI 5 IN ONE 2K többek között kisebb felülethibák kitöltéséhez, tapéta eltávolításához és festőhenger tisztításához használható. Ablakok és ajtók üvegtábláinak beillesztéséhez a KAI PATCH gittkést érdemes megtekinteni.\n\nA hasonló terméknevek mellett mindig ellenőrizze a méretet és a cikkszámot is. A részletes adatlap segít összevetni a lehetőségeket; ha a feladathoz szükséges adatot nem találja, kérdezze a Piktor 94 munkatársait. Személyes vásárlásra a Piktor 94 vasvári üzletében is lehetőség van.",
+      "sources": [
+        {
+          "url": "https://piktor94.hu/Spatulyak-glettvasak",
+          "title": "Piktor 94 – kategória és termékválaszték",
+          "kind": "shop"
+        },
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-2k",
+          "title": "Schuller KAI 2K méretsor",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k",
+          "title": "Schuller multifunkciós spatulya",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-patch",
+          "title": "Schuller üvegező gittkés",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://piktor94.hu/shop_contact.php",
+          "title": "Piktor 94 – vasvári üzlet és személyes átvétel",
+          "kind": "shop"
+        }
+      ],
+      "current_description_kind": "public_observation_not_unas_export"
+    }
+  ]
+};
+
+</script>
+<script>
+window.SUPPLIER_DATA = {
+  "schema_version": 1,
+  "description": "Nyilvános gyártói oldalakból és dokumentumokból ellenőrzött, kézzel strukturált bemeneti adatok. A böngészős feldolgozás ebből készít új leírásjavaslatot.",
+  "records": [
+    {
+      "brand": "Schuller",
+      "manufacturer_sku": "50707",
+      "type": "painter_spatula",
+      "family": "KAI 2K",
+      "facts": {
+        "width_mm": {
+          "value": 100,
+          "source_url": "https://www.schuller.eu/hu/p/kai-2k"
+        },
+        "material": {
+          "value": "rozsdamentes",
+          "source_url": "https://www.schuller.eu/hu/p/kai-2k"
+        },
+        "uses": {
+          "value": [
+            "felületjavítás",
+            "régi festék eltávolítása",
+            "ragasztóanyag felhordása"
+          ],
+          "source_url": "https://www.schuller.eu/hu/p/kai-2k"
+        }
+      },
+      "sources": [
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-2k",
+          "title": "Schuller KAI 2K – hivatalos termékcsalád és méretsor",
+          "kind": "manufacturer"
+        }
+      ],
+      "reviewed_at": "2026-09-24",
+      "identity_source_url": "https://www.schuller.eu/hu/p/kai-2k"
+    },
+    {
+      "brand": "Schuller",
+      "manufacturer_sku": "50086",
+      "type": "multi_spatula",
+      "family": "KAI 5 IN ONE 2K",
+      "facts": {
+        "width_mm": {
+          "value": 75,
+          "source_url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k"
+        },
+        "material": {
+          "value": "rozsdamentes",
+          "source_url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k"
+        },
+        "handle": {
+          "value": "2K",
+          "source_url": "https://www.schuller.eu/download/?file=792"
+        },
+        "uses": {
+          "value": [
+            "szögek kihúzása",
+            "kisebb lyukak és repedések feltöltése",
+            "régi tapéta eltávolítása",
+            "vödrök vagy dobozok kinyitása",
+            "festőhengerek tisztítása"
+          ],
+          "source_url": "https://www.schuller.eu/download/?file=3459"
+        }
+      },
+      "sources": [
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k",
+          "title": "Schuller KAI 5 IN ONE 2K – hivatalos termékoldal",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://www.schuller.eu/download/?file=792",
+          "title": "Schuller 50086 – hivatalos termékismertető, 1. oldal",
+          "kind": "manufacturer"
+        },
+        {
+          "url": "https://www.schuller.eu/download/?file=3459",
+          "title": "Schuller 50086 – hivatalos magyar használati útmutató, 1. oldal",
+          "kind": "manufacturer"
+        }
+      ],
+      "reviewed_at": "2026-09-24",
+      "identity_source_url": "https://www.schuller.eu/hu/p/kai-5-in-one-2k"
+    },
+    {
+      "brand": "Schuller",
+      "manufacturer_sku": "50080",
+      "type": "glazing_knife",
+      "family": "KAI PATCH",
+      "facts": {
+        "uses": {
+          "value": [
+            "ablakok és ajtók üvegtábláinak beillesztése"
+          ],
+          "source_url": "https://www.schuller.eu/hu/p/kai-patch"
+        }
+      },
+      "sources": [
+        {
+          "url": "https://www.schuller.eu/hu/p/kai-patch",
+          "title": "Schuller KAI PATCH – hivatalos termékoldal",
+          "kind": "manufacturer"
+        }
+      ],
+      "reviewed_at": "2026-09-24",
+      "identity_source_url": "https://www.schuller.eu/hu/p/kai-patch"
+    }
+  ]
+};
+
+</script>
+<script>
+/* Offline, deterministic enrichment from curated manufacturer records. No fetch or LLM. */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module === "object" && module.exports) module.exports = api;
+  else root.PiktorEngine = api;
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+  const BRANDS = { schuller: "Schuller", abraboro: "Abraboro", festa: "Festa" };
+  const TYPES = { painter_spatula: "festőspatulya", multi_spatula: "multifunkciós spatulya", glazing_knife: "üvegező gittkés" };
+  const SKU = /^[A-Za-z0-9][A-Za-z0-9._/-]{0,79}$/;
+  const isObject = value => value !== null && typeof value === "object" && !Array.isArray(value);
+  const text = value => typeof value === "string" && value.trim().length > 0 && value.length <= 1000 && !/[<>\u0000-\u001f\u007f]/.test(value);
+  const positive = value => typeof value === "number" && Number.isFinite(value) && value > 0;
+  const numberText = value => String(value).replace(".", ",");
+  function safeUrl(value) {
+    if (typeof value !== "string" || !/^https?:\/\//.test(value) || /[\s\u0000-\u001f]/.test(value)) return false;
+    try { const parsed = new URL(value); return !!parsed.hostname && !parsed.username && !parsed.password; } catch (_) { return false; }
+  }
+  function brand(value) { const key = typeof value === "string" ? value.toLowerCase() : ""; return Object.hasOwn(BRANDS, key) ? BRANDS[key] : null; }
+  function identity(product) {
+    if (!isObject(product)) return null;
+    const maker = brand(product.brand), sku = product.shop_sku;
+    if (!maker || typeof sku !== "string" || !SKU.test(sku)) return null;
+    let normalized = sku;
+    if (maker === "Schuller") { if (!sku.startsWith("S")) return null; normalized = sku.slice(1); }
+    if (maker === "Abraboro") { if (!sku.startsWith("ABR")) return null; normalized = sku.slice(3); }
+    if (maker === "Festa" && !sku.startsWith("L")) return null;
+    return SKU.test(normalized) ? { brand: maker, sku: normalized, key: maker + "|" + normalized } : null;
+  }
+  function supplierRecords(value) { return Array.isArray(value) ? value : isObject(value) ? value.records : null; }
+  function validateSupplierData(value) {
+    const errors = [], records = supplierRecords(value);
+    if (!Array.isArray(value) && (!isObject(value) || value.schema_version !== 1)) errors.push("A beszállítói dokumentum schema_version értéke 1 legyen.");
+    if (!Array.isArray(records)) return { valid: false, errors: errors.concat("Hiányzik a records tömb.") };
+    if (records.length > 20000) errors.push("Legfeljebb 20 000 beszállítói rekord dolgozható fel ebben a pilotban.");
+    records.forEach((record, index) => {
+      const at = `${index + 1}. rekord: `;
+      if (!isObject(record)) { errors.push(at + "objektum szükséges."); return; }
+      const maker = brand(record.brand);
+      if (!maker) errors.push(at + "ismeretlen márka.");
+      if (typeof record.manufacturer_sku !== "string" || !SKU.test(record.manufacturer_sku) || (maker === "Festa" && !record.manufacturer_sku.startsWith("L"))) errors.push(at + "hibás gyártói cikkszám.");
+      if (!text(record.type)) errors.push(at + "hiányzó vagy hibás terméktípus.");
+      if (record.family !== undefined && !text(record.family)) errors.push(at + "hibás termékcsalád.");
+      if (!safeUrl(record.identity_source_url)) errors.push(at + "hiányzó vagy hibás identity_source_url; a termékazonosság alapforrása kötelező.");
+      if (!isObject(record.facts)) errors.push(at + "a facts értéke objektum legyen.");
+      if (!Array.isArray(record.sources)) errors.push(at + "a sources értéke tömb legyen.");
+      else record.sources.forEach(source => {
+        if (!isObject(source) || !safeUrl(source.url) || !text(source.title) || !text(source.kind)) errors.push(at + "hibás vagy nem biztonságos forráshivatkozás.");
+      });
+    });
+    return { valid: errors.length === 0, errors };
+  }
+  function observedCopy(original) {
+    const copy = isObject(original) ? JSON.parse(JSON.stringify(original)) : {};
+    copy.observation_notes = Array.isArray(copy.unknowns) ? copy.unknowns : (Array.isArray(copy.observation_notes) ? copy.observation_notes : []);
+    copy.observation_date = copy.source_reviewed_at || null;
+    delete copy.unknowns;
+    return copy;
+  }
+  function block(original, messages) {
+    const copy = observedCopy(original);
+    return Object.assign(copy, { proposed_short: "", proposed_long: "", facts: [], sources: [], match_status: "unverified", processing: { status: "blocked", messages, source_refs: [], shipping_weight_kg: null } });
+  }
+  function processProducts(products, supplierData) {
+    const validation = validateSupplierData(supplierData), list = Array.isArray(products) ? products : [];
+    const index = new Map(), localKeys = new Map();
+    if (validation.valid) supplierRecords(supplierData).forEach(record => {
+      const key = brand(record.brand) + "|" + record.manufacturer_sku;
+      index.set(key, (index.get(key) || []).concat(record));
+    });
+    list.forEach(product => { const id = identity(product); if (id) localKeys.set(id.key, (localKeys.get(id.key) || 0) + 1); });
+    const result = list.map(original => {
+      if (!validation.valid) return block(original, validation.errors);
+      const id = identity(original);
+      if (!id) return block(original, ["Hibás márka vagy bolti cikkszám; nincs részleges és hasonlósági párosítás."]);
+      if (localKeys.get(id.key) !== 1) return block(original, ["Több bolti termék ugyanarra a gyártói kulcsra mutat."]);
+      if (original.manufacturer_sku && original.manufacturer_sku !== id.sku) return block(original, ["A megadott gyártói cikkszám ellentmond a bolti előtag szabályának."]);
+      const candidates = index.get(id.key) || [];
+      if (candidates.length !== 1) return block(original, [candidates.length ? "Több beszállítói rekord egyezik; a párosítás nem egyértelmű." : "Nincs pontos gyártói cikkszámegyezés."]);
+      if (original.match_status === "conflict") return block(original, ["A bolti adatban korábban feljegyzett ellentmondást embernek kell feloldania."]);
+      const record = candidates[0], label = Object.hasOwn(TYPES, record.type) ? TYPES[record.type] : null;
+      if (!label) return block(original, ["Ehhez a terméktípushoz nincs ellenőrzött szövegsablon."]);
+      const sources = record.sources.filter(source => ["manufacturer", "manufacturer_catalog"].includes(source.kind));
+      if (!sources.length) return block(original, ["Hiányzik a termékazonosságot és típust alátámasztó gyártói forrás."]);
+      const sourceMap = new Map(sources.map(source => [source.url, source])), facts = [], messages = [], values = {};
+      if (!sourceMap.has(record.identity_source_url)) return block(original, ["A termékazonosság alapforrása hiányzik a gyártói források közül; nem helyettesíthető más hivatkozással."]);
+      const add = (key, labelText, valid, display) => {
+        const fact = record.facts[key];
+        if (fact === undefined) return;
+        if (!isObject(fact) || !sourceMap.has(fact.source_url) || !safeUrl(fact.source_url) || !valid(fact.value)) {
+          messages.push(`${labelText}: a tény kimaradt, mert nincs érvényes érték és hozzá tartozó gyártói forrás.`); return;
+        }
+        values[key] = fact.value;
+        facts.push({ label: labelText, value: display(fact.value), source_url: fact.source_url });
+      };
+      add("width_mm", "Munkaszélesség", positive, value => numberText(value) + " mm");
+      add("material", "Anyag", text, value => value);
+      add("handle", "Markolat", text, value => value);
+      add("uses", "Felhasználás", value => Array.isArray(value) && value.length > 0 && value.length <= 20 && value.every(text), value => value.join("; "));
+      if (isObject(original.variant) && positive(original.variant.width_mm)) {
+        if (values.width_mm !== undefined && original.variant.width_mm !== values.width_mm) return block(original, ["A bolti és gyártói munkaszélesség eltér; variánsütközés miatt nincs javaslat."]);
+        if (values.width_mm === undefined) messages.push("A bolti szélességhez nincs forrással igazolt gyártói érték; szélesség nem kerül a javaslatba.");
+      }
+      let weight = null;
+      const suppliedWeight = record.facts.shipping_weight;
+      if (suppliedWeight !== undefined) {
+        if (isObject(suppliedWeight) && positive(suppliedWeight.value) && ["g", "kg"].includes(suppliedWeight.unit) && safeUrl(suppliedWeight.source_url) && sourceMap.has(suppliedWeight.source_url)) {
+          weight = suppliedWeight.unit === "g" ? suppliedWeight.value / 1000 : suppliedWeight.value;
+          if (!positive(weight)) weight = null;
+          else facts.push({ label: "Csomagolt szállítási tömeg", value: numberText(weight) + " kg", source_url: suppliedWeight.source_url });
+        }
+        if (weight === null) messages.push("A szállítási tömeg kimaradt: pozitív szám, g/kg mértékegység és gyártói forrás szükséges.");
+      }
+      if (weight === null) messages.push("A csomagolt szállítási tömeg ismeretlen; nettó tömegből és terméknévből nem becsülhető.");
+      const baseSource = record.identity_source_url;
+      facts.unshift({ label: "Terméktípus", value: label, source_url: baseSource });
+      if (record.family) facts.push({ label: "Termékcsalád", value: record.family, source_url: baseSource });
+      const width = values.width_mm === undefined ? "" : numberText(values.width_mm) + " mm széles, ";
+      const material = values.material ? values.material + " " : "";
+      let short = width + material + label + (values.handle ? ", " + values.handle + " markolattal" : "") + ".";
+      short = short[0].toLocaleUpperCase("hu-HU") + short.slice(1);
+      if (values.width_mm === undefined && !values.material && values.uses) short += " Felhasználási területe: " + values.uses[0] + ".";
+      let opening = (record.family ? record.family + " " : "") + material + label;
+      if (values.width_mm !== undefined) opening += ", " + numberText(values.width_mm) + " mm munkaszélességgel";
+      if (values.handle) opening += (values.width_mm !== undefined ? " és " : ", ") + values.handle + " markolattal";
+      opening = opening[0].toLocaleUpperCase("hu-HU") + opening.slice(1) + ".";
+      const long = [opening];
+      if (values.uses) long.push("Felhasználási területei: " + values.uses.join("; ") + ".");
+      long.push("Gyártói cikkszám: " + id.sku + ".");
+      const usedUrls = [...new Set([baseSource, ...facts.map(fact => fact.source_url)])];
+      messages.unshift("Pontos cikkszám alapján, előkészített gyártói rekordból készült; a szöveg emberi ellenőrzést igényel.");
+      return Object.assign(observedCopy(original), {
+        manufacturer_sku: id.sku, proposed_short: short, proposed_long: long.join("\n\n"), facts,
+        sources: usedUrls.map(url => ({ ...sourceMap.get(url) })), match_status: "exact",
+        processing: { status: "matched", messages, source_refs: usedUrls, shipping_weight_kg: weight },
+      });
+    });
+    const matched = result.filter(product => product.processing.status === "matched").length;
+    return { products: result, summary: { total: result.length, matched, blocked: result.length - matched }, errors: Array.isArray(products) ? validation.errors : ["A products értéke tömb legyen."] };
+  }
+  function imageRules(width, height, bytes, date) {
+    const messages = [], day = typeof date === "string" ? date.slice(0, 10) : "";
+    const validDate = /^\d{4}-\d{2}-\d{2}$/.test(day) && !Number.isNaN(Date.parse(day)) && new Date(day).toISOString().slice(0, 10) === day;
+    const minimum = validDate ? (day >= "2027-01-31" ? 500 : 100) : null;
+    const dimensions = Number.isInteger(width) && width > 0 && Number.isInteger(height) && height > 0;
+    const fileSize = Number.isInteger(bytes) && bytes > 0;
+    let failed = false;
+    if (!validDate) messages.push("Az ellenőrzési dátum hiányzik vagy hibás.");
+    if (!dimensions) messages.push("A kép tényleges pixelmérete ismeretlen.");
+    if (!fileSize) messages.push("A képfájl tényleges bájtmérete ismeretlen.");
+    if (dimensions && minimum !== null && (width < minimum || height < minimum)) { failed = true; messages.push(`A kép mindkét oldala legalább ${minimum} pixel legyen.`); }
+    if (dimensions && width * height > 64000000) { failed = true; messages.push("A kép meghaladja a 64 megapixelt."); }
+    if (fileSize && bytes > 16000000) { failed = true; messages.push("A képfájl nagyobb 16 000 000 bájtnál."); }
+    const complete = validDate && dimensions && fileSize;
+    if (complete && !failed) messages.push("A vizsgált pixel- és fájlméret-határok teljesülnek; ez nem Google-elfogadási garancia.");
+    const future = dimensions && fileSize ? width >= 500 && height >= 500 && width * height <= 64000000 && bytes <= 16000000 : null;
+    return { status: failed ? "fail" : complete ? "pass" : "unknown", minimum_pixels: minimum, future_minimum_pixels: 500, future_ready: future, width: dimensions ? width : null, height: dimensions ? height : null, bytes: fileSize ? bytes : null, messages, scope: "technical_dimensions_and_size_only" };
+  }
+  return Object.freeze({ processProducts, validateSupplierData, imageRules });
+});
+
+</script>
+<script>
+/* Local input -> validated matching -> proposed content. No shop writes. */
+(function () {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const state = { baseline: null, supplier: null, output: null, selected: null, query: "", images: {}, imageLoads: {}, reviews: {} };
+  const engine = window.PiktorEngine;
+  const node = (tag, text, css) => { const item = document.createElement(tag); if (text !== undefined) item.textContent = String(text); if (css) item.className = css; return item; };
+  const safeUrl = (value) => { try { const url = new URL(String(value)); return ["http:", "https:"].includes(url.protocol) ? url.href : null; } catch (_) { return null; } };
+  function link(text, url) { const href = safeUrl(url); const item = node(href ? "a" : "span", text); if (href) { item.href = href; item.target = "_blank"; item.rel = "noopener noreferrer"; } return item; }
+  function message(text, error = false) { $("message").textContent = text; $("message").classList.toggle("error", error); }
+  function prose(container, value) { container.replaceChildren(); String(value || "").split(/\n\s*\n/).filter(Boolean).forEach((part) => container.append(node("p", part))); }
+  function products() { return state.output ? state.output.products : state.baseline.products; }
+  function selected() { return products().find((product) => product.id === state.selected); }
+  function records() { return Array.isArray(state.supplier) ? state.supplier : state.supplier.records; }
+  function normalize(value) { return String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); }
+  function renderList() {
+    const list = $("product-list"); list.replaceChildren();
+    const query = normalize(state.query);
+    products().filter((product) => normalize([product.name, product.shop_sku, product.manufacturer_sku].join(" ")).includes(query)).forEach((product) => {
+      const button = node("button", undefined, "product-option" + (product.id === state.selected ? " active" : ""));
+      button.type = "button"; button.setAttribute("aria-pressed", String(product.id === state.selected));
+      button.append(node("span", product.name), node("small", product.shop_sku));
+      button.addEventListener("click", () => { state.selected = product.id; renderList(); renderProduct(); });
+      list.append(button);
+    });
+    if (!list.children.length) list.append(node("p", "Nincs ilyen termék a mintában.", "small muted"));
+  }
+  function renderProduct() {
+    const product = selected(); if (!product) return;
+    $("product-brand").textContent = product.brand_display || product.brand;
+    $("product-name").textContent = product.name; $("shop-sku").textContent = product.shop_sku;
+    $("manufacturer-sku").textContent = product.manufacturer_sku || "Nem igazolt";
+    const shop = safeUrl(product.shop_url); if (shop) $("shop-link").href = shop; else $("shop-link").removeAttribute("href");
+    const matched = product.processing?.status === "matched";
+    $("match-status").textContent = !state.output ? "Még nincs feldolgozva" : matched ? "Párosított rekord" : "Nem dolgozható fel";
+    $("match-status").classList.toggle("warning", !matched);
+    $("output-placeholder").hidden = matched;
+    $("output-placeholder").textContent = state.output ? "Ehhez a termékhez nem készült szövegjavaslat. A feldolgozási megjegyzés mutatja az okot." : "A feldolgozás után itt jelenik meg a gyártói adatokból összeállított szöveg.";
+    $("generated-content").hidden = !matched;
+    prose($("proposed-short"), matched ? product.proposed_short : ""); prose($("proposed-long"), matched ? product.proposed_long : "");
+    prose($("current-description"), product.current_description);
+    const messages = product.processing?.messages || [];
+    $("processing-messages").hidden = !messages.length; $("processing-messages").open = false; prose($("processing-message-body"), messages.join("\n\n"));
+    $("fact-list").replaceChildren();
+    (state.output ? product.facts || [] : []).forEach((fact) => {
+      const row = node("div"); const value = node("dd", fact.value); const source = link("↗", fact.source_url);
+      source.setAttribute("aria-label", fact.label + " forrása"); value.append(source); row.append(node("dt", fact.label), value); $("fact-list").append(row);
+    });
+    if (!state.output) $("fact-list").append(node("p", "A feldolgozás után jelennek meg.", "muted"));
+    const weight = product.processing?.shipping_weight_kg;
+    $("shipping-weight").textContent = Number.isFinite(weight) && weight > 0 ? "Igazolt szállítási tömeg: " + weight + " kg" : "Szállítási tömeg: nincs igazolt adat.";
+    $("unknown-list").replaceChildren();
+    $("observation-title").textContent = "A korábbi adatfelvétel megjegyzései · " + (product.observation_date || state.baseline.observed_at);
+    const observationNotes = (state.output ? product.observation_notes : product.unknowns) || [];
+    observationNotes.forEach((note) => $("unknown-list").append(node("li", note)));
+    if (!observationNotes.length) $("unknown-list").append(node("li", "Nincs külön megjegyzés rögzítve."));
+    $("source-list").replaceChildren();
+    (product.sources || []).forEach((source) => { const item = node("li"); item.append(link(source.title || source.url, source.url)); $("source-list").append(item); });
+    $("review-button").disabled = !matched; $("source-confirmation").checked = false;
+    $("review-message").textContent = state.reviews[product.id] ? "Ellenőrizte: " + state.reviews[product.id].reviewer + ". Az eredmény exportjával menthető." : "A rögzítés az eredmény exportjával menthető. Új feldolgozás után újra kell ellenőrizni a szöveget.";
+    $("load-image-button").disabled = !safeUrl(product.image?.url);
+    const manufacturerImage = product.manufacturer_image;
+    $("load-manufacturer-image-button").hidden = !(safeUrl(manufacturerImage?.preview_url) || safeUrl(manufacturerImage?.url));
+    $("manufacturer-image-info").hidden = $("load-manufacturer-image-button").hidden;
+    $("manufacturer-image-info").textContent = manufacturerImage ? "Gyártói képjelölt, rögzített fájlmérés: " + manufacturerImage.width + " × " + manufacturerImage.height + " px, " + new Intl.NumberFormat("hu-HU").format(manufacturerImage.bytes) + " bájt. " + (manufacturerImage.identity_note || "A változathoz való egyezés külön ellenőrizendő.") + " Felhasználási jog: nincs ellenőrizve." : "";
+    renderImage();
+  }
+  function renderProcessing() {
+    $("supplier-json").textContent = JSON.stringify(state.supplier, null, 2);
+    $("output-json").textContent = state.output ? JSON.stringify(state.output, null, 2) : "Még nem futott feldolgozás.";
+    $("processing-rows").replaceChildren();
+    products().forEach((product) => {
+      const row = node("tr");
+      [product.shop_sku, product.manufacturer_sku || "—", !product.processing ? "Még nincs feldolgozva" : product.processing.status === "matched" ? "Párosítva" : "Blokkolva", (product.processing?.messages || []).join(" ") || "—"].forEach((value) => row.append(node("td", value)));
+      $("processing-rows").append(row);
+    });
+  }
+  function processData() {
+    try {
+      const result = engine.processProducts(state.baseline.products, state.supplier);
+      if (!result || !Array.isArray(result.products) || result.products.length !== state.baseline.products.length) throw new Error("A feldolgozó nem adott teljes eredményt.");
+      state.output = result; state.reviews = {}; $("export-button").disabled = false;
+      const matched = result.products.filter((product) => product.processing?.status === "matched").length;
+      message("Feldolgozva: " + matched + " / " + result.products.length + " termék. Blokkolt: " + (result.products.length - matched) + ".");
+      renderList(); renderProduct(); renderProcessing();
+      result.products.filter((product) => product.processing?.status === "matched").forEach((product) => {
+        if (!state.images[product.id] && !state.imageLoads[product.id]) loadImages(remoteImageCandidates(product), product.id, "automatic");
+      });
+    } catch (error) { message("A feldolgozás sikertelen: " + error.message + " A korábbi eredmény változatlan.", true); }
+  }
+  async function importSupplier(event) {
+    const file = event.target.files?.[0]; if (!file) return;
+    try {
+      if (file.size > 5 * 1024 * 1024) throw new Error("A JSON-fájl legfeljebb 5 MB lehet.");
+      const candidate = JSON.parse(await file.text());
+      const validation = engine.validateSupplierData(candidate);
+      if (!validation.valid) throw new Error(validation.errors.join(" "));
+      state.supplier = candidate; state.output = null; state.reviews = {};
+      $("supplier-label").textContent = "Gyártói adatok: " + file.name;
+      $("supplier-summary").textContent = records().length + " gyártói rekord betöltve. A párosításhoz indítsa el a feldolgozást.";
+      $("export-button").disabled = true;
+      message("A gyártói JSON betöltve. Az új adatokból még nem készült szövegjavaslat.");
+      renderList(); renderProduct(); renderProcessing();
+    } catch (error) { message("A JSON nem tölthető be: " + error.message + " A korábbi adatok és eredmények változatlanok.", true); }
+    event.target.value = "";
+  }
+  function renderImage() {
+    const product = selected(); const item = state.images[product.id]; const request = state.imageLoads[product.id]; const img = $("product-image");
+    img.hidden = !item; $("image-placeholder").hidden = Boolean(item);
+    if (item) { if (img.getAttribute("src") !== item.display_url) img.src = item.display_url; img.alt = product.name + " – megnyitott kép"; }
+    else { img.removeAttribute("src"); img.alt = ""; }
+    $("image-placeholder").textContent = request?.status === "loading" ? "Kép betöltése…" : request?.status === "error" ? "A kép nem tölthető be." : "A termékkép nincs betöltve.";
+    $("image-frame").setAttribute("aria-busy", String(request?.status === "loading"));
+    $("image-status").textContent = request?.message || "";
+    $("image-status").classList.toggle("error", request?.status === "error");
+    $("retry-image-button").hidden = request?.status !== "error";
+    const result = $("image-result"); result.replaceChildren();
+    if (!item) { result.append(node("p", "Mért képméret: nincs adat. A felhasználási jog nincs ellenőrizve.")); return; }
+    result.append(node("strong", item.width + " × " + item.height + " px"));
+    result.append(node("p", item.bytes === null ? "Fájlméret: nem mért (külső kép)." : (item.bytes_source === "recorded_download" ? "Fájlméret a rögzített letöltésből: " : "Fájlméret: ") + new Intl.NumberFormat("hu-HU").format(item.bytes) + " bájt."));
+    const labels = { pass: "A mért műszaki adatok megfelelnek.", fail: "A mért műszaki adatok nem felelnek meg.", unknown: "A műszaki ellenőrzéshez hiányzó adat maradt." };
+    result.append(node("p", labels[item.audit.status] || "Ellenőrzendő kép."));
+    const list = node("ul"); (item.audit.messages || []).forEach((entry) => list.append(node("li", entry))); result.append(list);
+    if (item.width < 500 || item.height < 500) result.append(node("p", "A kép a 2027. január 31-től érvényes 500 × 500 px minimumot nem éri el."));
+    result.append(node("p", "A vizsgálat nem igazol képhasználati jogot vagy Google-elfogadást."));
+  }
+  function remoteImageCandidates(product, preferred = "preview") {
+    const candidates = [], manufacturer = product.manufacturer_image;
+    if (preferred !== "shop" && manufacturer) {
+      const metadata = { source: "manufacturer_candidate", bytes: null, recorded_measurement: { source_url: manufacturer.url, width: manufacturer.width, height: manufacturer.height, bytes: manufacturer.bytes, measured_at: manufacturer.measured_at, sha256: manufacturer.sha256 }, identity_note: manufacturer.identity_note, rights: "unknown" };
+      const urls = preferred === "original" ? [manufacturer.url, manufacturer.preview_url] : [manufacturer.preview_url, manufacturer.url];
+      urls.forEach((value) => { const url = safeUrl(value); if (url) candidates.push({ url, metadata: { ...metadata, source_url: url } }); });
+    }
+    const shopUrl = safeUrl(product.image?.url);
+    if (shopUrl) candidates.push({ url: shopUrl, metadata: { source: "remote_url", source_url: shopUrl, bytes: null, rights: "unknown" } });
+    return candidates.filter((candidate, index) => candidates.findIndex((entry) => entry.url === candidate.url) === index);
+  }
+  function loadImages(candidates, productId, mode = "manual") {
+    const previousRequest = state.imageLoads[productId];
+    const token = (previousRequest?.token || 0) + 1;
+    const request = { token, status: "loading", mode, message: "Kép betöltése…", candidates };
+    state.imageLoads[productId] = request;
+    const current = () => state.imageLoads[productId] === request;
+    const refresh = () => { if (current() && state.selected === productId) renderImage(); };
+    const fail = (text) => { if (!current()) return; request.status = "error"; request.message = text + (state.images[productId] ? " A korábban betöltött kép megmaradt." : ""); refresh(); };
+    if (!candidates.length) { fail("Nincs elérhető képforrás ehhez a termékhez."); return; }
+    refresh();
+    function attempt(index) {
+      if (!current()) return;
+      const { url, metadata } = candidates[index]; const probe = new Image();
+      request.message = index ? "Másik képforrás betöltése…" : metadata.source === "local_file" ? "Helyi kép betöltése…" : "Termékkép betöltése…";
+      refresh();
+      const releaseLocal = () => { if (metadata.source === "local_file") URL.revokeObjectURL(url); };
+      probe.onload = () => {
+        if (!current()) { releaseLocal(); return; }
+        const width = probe.naturalWidth, height = probe.naturalHeight;
+        if (!width || !height) { releaseLocal(); fail("A betöltött kép mérete nem olvasható. Válasszon másik képet."); return; }
+        const previous = state.images[productId];
+        if (previous?.source === "local_file" && previous.display_url !== url) URL.revokeObjectURL(previous.display_url);
+        const measuredAt = new Date().toISOString();
+        state.images[productId] = { ...metadata, display_url: url, width, height, measured_at: measuredAt, audit: engine.imageRules(width, height, metadata.bytes, measuredAt.slice(0, 10)) };
+        request.status = "loaded"; request.message = metadata.source === "local_file" ? "Helyi kép betöltve." : metadata.source === "manufacturer_candidate" ? "Gyártói képjelölt betöltve." : "A webshop képe betöltve.";
+        refresh();
+      };
+      probe.onerror = () => {
+        releaseLocal(); if (!current()) return;
+        if (index + 1 < candidates.length) attempt(index + 1);
+        else fail("A képforrások nem tölthetők be. Próbálja újra, vagy válasszon helyi képet.");
+      };
+      probe.src = url;
+    }
+    attempt(0);
+  }
+  function importImage(event) {
+    const file = event.target.files?.[0]; if (!file) return;
+    if (!["image/jpeg", "image/png", "image/webp", "image/gif"].includes(file.type)) { message("JPEG, PNG, WebP vagy GIF képfájlt válasszon.", true); event.target.value = ""; return; }
+    loadImages([{ url: URL.createObjectURL(file), metadata: { source: "local_file", name: file.name, bytes: file.size, rights: "unknown" } }], state.selected);
+    event.target.value = "";
+  }
+  function reviewProduct() {
+    const product = selected(); const reviewer = $("reviewer-name").value.trim();
+    if (product.processing?.status !== "matched") return;
+    if (!reviewer || !$("source-confirmation").checked) { $("review-message").textContent = "Adja meg a nevét, és erősítse meg a források ellenőrzését."; return; }
+    state.reviews[product.id] = { product_id: product.id, reviewer, reviewed_at: new Date().toISOString(), source_review_confirmed: true, proposal_snapshot: JSON.parse(JSON.stringify(product)) };
+    $("review-message").textContent = "Ellenőrizte: " + reviewer + ". Az eredmény exportjával menthető.";
+  }
+  function exportResult() {
+    if (!state.output) return;
+    const imageChecks = Object.entries(state.images).map(([product_id, entry]) => { const { display_url, ...metadata } = entry; return { product_id, ...metadata }; });
+    const payload = { format: "piktor_content_result_v1", schema_version: 1, generated_at: new Date().toISOString(), observed_at: state.baseline.observed_at, purpose: "content_proposal_not_unas_import", products: state.output.products, categories: state.baseline.categories, supplier_data: state.supplier, image_checks: imageChecks, editorial_reviews: Object.values(state.reviews), note: "Szövegjavaslat és adatellenőrzési eredmény. Nem közvetlen UNAS-importfájl és nem feltöltési engedély. A képhasználati jogot külön kell ellenőrizni." };
+    const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2) + "\n"], { type: "application/json;charset=utf-8" }));
+    const anchor = node("a"); anchor.href = url; anchor.download = "eredmeny.json"; document.body.append(anchor); anchor.click(); anchor.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000); message("Az eredmeny.json letöltése elindult.");
+  }
+  function renderCategories() {
+    const container = $("category-content"); container.replaceChildren();
+    (state.baseline.categories || []).forEach((category) => {
+      const card = node("section", undefined, "category-card"); card.append(node("h3", category.name), link("Meglévő kategóriaoldal ↗", category.url));
+      const description = node("div", undefined, "prose"); prose(description, category.proposed_description); card.append(description);
+      const observation = node("details"); observation.append(node("summary", "A meglévő oldal megfigyelése"), node("p", category.current_description)); card.append(observation);
+      const sources = node("details"); sources.append(node("summary", "A kategóriaszöveg forrásai")); const list = node("ul");
+      (category.sources || []).forEach((source) => { const entry = node("li"); entry.append(link(source.title || source.url, source.url)); list.append(entry); }); sources.append(list); card.append(sources); container.append(card);
+    });
+  }
+  function activateTab(name, focus = false) {
+    document.querySelectorAll("[data-tab]").forEach((tab) => { const active = tab.dataset.tab === name; tab.classList.toggle("active", active); tab.setAttribute("aria-selected", String(active)); tab.tabIndex = active ? 0 : -1; $("panel-" + tab.dataset.tab).hidden = !active; if (active && focus) tab.focus(); });
+  }
+  function bindEvents() {
+    $("process-button").addEventListener("click", processData); $("supplier-file").addEventListener("change", importSupplier);
+    $("export-button").addEventListener("click", exportResult); $("image-file").addEventListener("change", importImage);
+    $("review-button").addEventListener("click", reviewProduct); $("print-button").addEventListener("click", () => window.print());
+    $("product-search").addEventListener("input", (event) => { state.query = event.target.value; renderList(); });
+    $("load-image-button").addEventListener("click", () => { const product = selected(); loadImages(remoteImageCandidates(product, "shop"), product.id); });
+    $("load-manufacturer-image-button").addEventListener("click", () => { const product = selected(); loadImages(remoteImageCandidates(product, "original"), product.id); });
+    $("retry-image-button").addEventListener("click", () => { const product = selected(); loadImages(remoteImageCandidates(product), product.id); });
+    const tabs = Array.from(document.querySelectorAll("[data-tab]"));
+    tabs.forEach((tab, index) => { tab.addEventListener("click", () => activateTab(tab.dataset.tab)); tab.addEventListener("keydown", (event) => { const next = event.key === "ArrowRight" ? (index + 1) % tabs.length : event.key === "ArrowLeft" ? (index - 1 + tabs.length) % tabs.length : event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1 : null; if (next !== null) { event.preventDefault(); activateTab(tabs[next].dataset.tab, true); } }); });
+  }
+  function init() {
+    try {
+      if (!window.PILOT_DATA || !Array.isArray(window.PILOT_DATA.products) || !window.PILOT_DATA.products.length) throw new Error("A webshop-mintaadatok hiányoznak.");
+      if (!engine?.processProducts || !engine?.validateSupplierData || !engine?.imageRules) throw new Error("A feldolgozómodul (engine.js) hiányzik.");
+      const validation = engine.validateSupplierData(window.SUPPLIER_DATA); if (!validation.valid) throw new Error("A gyártói mintaadatok hiányoznak vagy hibásak: " + validation.errors.join(" "));
+      state.baseline = window.PILOT_DATA; state.supplier = window.SUPPLIER_DATA; state.selected = state.baseline.products[0].id;
+      $("observed-at").textContent = "Forrásmegfigyelés: " + state.baseline.observed_at;
+      $("supplier-summary").textContent = records().length + " gyártói rekord. Párosítás cikkszám alapján; felhasználás csak rögzített forrással.";
+      renderList(); renderProduct(); renderProcessing(); renderCategories(); bindEvents();
+    } catch (error) { $("load-error").hidden = false; $("load-error").textContent = error.message + " Ellenőrizze a README-ben leírt fájlokat."; $("process-button").disabled = true; message("A feldolgozás nem indítható.", true); }
+  }
+  init();
+}());
+
+</script>
+</body>
+</html>

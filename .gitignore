@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+out/
+approvals.json
+*.log
+.DS_Store
+private/
+.qa/
+node_modules/
+.pages/

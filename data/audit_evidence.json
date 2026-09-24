@@ -1,0 +1,479 @@
+{
+  "observed_at": "2026-09-24",
+  "scope": "Három kiválasztott Schuller-termék; egy további Schuller-változat kontrollként; négy megadott kategória nyilvános vizsgálata. Nem teljes webshopaudit.",
+  "products": [
+    {
+      "shop_sku": "S50707",
+      "shop_url": "https://piktor94.hu/SCHU-SPATULYA-ROZSDAMENTES-100MM-MUA-NYELLEL",
+      "html_sha256": "975a65c7a1aa258ad42cb23f8e3fafd1ee509d658cf549dbf8cf54617569a2a7",
+      "sku_evidence": [
+        "UNAS.shop[\"sku\"]",
+        "artdet__sku-value",
+        "Product JSON-LD sku"
+      ],
+      "description_in_product_jsonld": false,
+      "weight_in_product_jsonld": false,
+      "visible_detail_description_found": false,
+      "description_check_note": "A szerveroldali HTML termék-részletezési szakasza és a webes szövegkivonat kézzel átnézve. Admin mezőtartalomra nem bizonyíték.",
+      "image_url": "https://piktor94.hu/img/94079/S50707/S50707.jpg?time=1770446288",
+      "gallery_declared_dimensions_px": [
+        600,
+        277
+      ],
+      "decoded_image_dimensions_px": null
+    },
+    {
+      "shop_sku": "S50086",
+      "shop_url": "https://piktor94.hu/SCHU-SPAKLI-ROZSDAM-TOBBFUNKCIOS",
+      "html_sha256": "19f1dd56b47203a2cd1005ca9f37613e6ce154ef24acb8f513e5510e906795cb",
+      "sku_evidence": [
+        "UNAS.shop[\"sku\"]",
+        "artdet__sku-value",
+        "Product JSON-LD sku"
+      ],
+      "description_in_product_jsonld": false,
+      "weight_in_product_jsonld": false,
+      "visible_detail_description_found": false,
+      "description_check_note": "A szerveroldali HTML termék-részletezési szakasza és a webes szövegkivonat kézzel átnézve. Admin mezőtartalomra nem bizonyíték.",
+      "image_url": "https://piktor94.hu/img/94079/S50086/S50086.jpg?time=1706193323",
+      "gallery_declared_dimensions_px": [
+        1000,
+        506
+      ],
+      "decoded_image_dimensions_px": null
+    },
+    {
+      "shop_sku": "S50080",
+      "shop_url": "https://piktor94.hu/SCHU-SPAKLI-UVEGEZO",
+      "html_sha256": "f5185a8adfbe22ea20a1a380c2f974d52356557320973961476067e0ccb13bee",
+      "sku_evidence": [
+        "UNAS.shop[\"sku\"]",
+        "artdet__sku-value",
+        "Product JSON-LD sku"
+      ],
+      "description_in_product_jsonld": false,
+      "weight_in_product_jsonld": false,
+      "visible_detail_description_found": false,
+      "description_check_note": "A szerveroldali HTML termék-részletezési szakasza és a webes szövegkivonat kézzel átnézve. Admin mezőtartalomra nem bizonyíték.",
+      "image_url": "https://piktor94.hu/img/94079/S50080/S50080.jpg?time=1706193323",
+      "gallery_declared_dimensions_px": [
+        1000,
+        572
+      ],
+      "decoded_image_dimensions_px": null
+    }
+  ],
+  "categories": [
+    {
+      "url": "https://piktor94.hu/Festa-szerszamok",
+      "displayed_product_count": 911,
+      "sampled_product_links": 20,
+      "products": [
+        {
+          "shop_sku": "L37300",
+          "url": "https://piktor94.hu/ACS-OVTASKA-EGYRESZES-BOR",
+          "name": "Acs Ovtaska Egyreszes Bor"
+        },
+        {
+          "shop_sku": "L13272",
+          "url": "https://piktor94.hu/ACSCERUZA-FEHER-250MM-L13272-NAGY",
+          "name": "Acsceruza Feher 250Mm   L13272 Nagy"
+        },
+        {
+          "shop_sku": "L13273",
+          "url": "https://piktor94.hu/ACSCERUZA-UVEG-ES-KERAMIA",
+          "name": "Acsceruza Uveg Es Keramia"
+        },
+        {
+          "shop_sku": "L18615",
+          "url": "https://piktor94.hu/ADAPTER-FUROGEPHEZ-1-4-13MM-5DB",
+          "name": "Adapter Furogephez 1/4  13Mm"
+        },
+        {
+          "shop_sku": "L13236",
+          "url": "https://piktor94.hu/ALKOHOLOS-FLIC-FEKETE-VEKONY",
+          "name": "Alkoholos Flic Fekete Vekony"
+        },
+        {
+          "shop_sku": "L37546",
+          "url": "https://piktor94.hu/ALLITHATO-KOMUVES-BAK-120CM",
+          "name": "Allithato Komuves Bak 120Cm"
+        },
+        {
+          "shop_sku": "L32326",
+          "url": "https://piktor94.hu/ALU-GIPSZGYALU-450X90MM-8-PENGES-L32326",
+          "name": "Alu Gipszgyalu 450X90Mm 8 Penges  L32326"
+        },
+        {
+          "shop_sku": "HSLX-100",
+          "url": "https://piktor94.hu/ALU-LEHUZOLEC-VIZMER-100x10CM-SLXB",
+          "name": "Alu Lehuzolec Vizmer. 100X10Cm Slxb"
+        },
+        {
+          "shop_sku": "5538",
+          "url": "https://piktor94.hu/ALU-LEHUZOLEC-VIZMER-150x10CM-SLXB",
+          "name": "Alu Lehuzolec Vizmer. 150X10Cm Slxb"
+        },
+        {
+          "shop_sku": "0068",
+          "url": "https://piktor94.hu/ALU-LEHUZOLEC-VIZMER-200x10CM-SLXB",
+          "name": "Alu Lehuzolec Vizmer. 200X10Cm Slxb"
+        },
+        {
+          "shop_sku": "0070",
+          "url": "https://piktor94.hu/ALU-LEHUZOLEC-VIZMER-250x10CM-SLXB-SOLA-HSLX-250",
+          "name": "Alu Lehuzolec Vizmer. 250X10Cm Slxb Sola Hslx-250"
+        },
+        {
+          "shop_sku": "24380",
+          "url": "https://piktor94.hu/ALU-LEHUZOLEC-VIZMER-300x10CM-SLXB",
+          "name": "Alu Lehuzolec Vizmer. 300X10Cm Slxb"
+        },
+        {
+          "shop_sku": "L45466",
+          "url": "https://piktor94.hu/ARNYEKOLO-TEXTILIA-15Mx10M-220G-M2-90",
+          "name": "Arnyekolo Textilia 1,5Mx10M 220G/M2 90%"
+        },
+        {
+          "shop_sku": "L18604",
+          "url": "https://piktor94.hu/ATALAKITO-KESZLET-1-4-3-8-1-2",
+          "name": "Atalakito Keszlet 1/4 3/8 1/2"
+        },
+        {
+          "shop_sku": "L18640",
+          "url": "https://piktor94.hu/BIT-BEHAJTO-PH1-S2-70MM",
+          "name": "Bit Behajto Ph1 S2 70Mm"
+        },
+        {
+          "shop_sku": "L18641",
+          "url": "https://piktor94.hu/BIT-BEHAJTO-PH2-S2-70MM",
+          "name": "Bit Behajto Ph2 S2 70Mm"
+        },
+        {
+          "shop_sku": "L18645",
+          "url": "https://piktor94.hu/BIT-BEHAJTO-PZ1-S2-70MM",
+          "name": "Bit Behajto Pz1 S2 70Mm"
+        },
+        {
+          "shop_sku": "L18646",
+          "url": "https://piktor94.hu/BIT-BEHAJTO-PZ2-S2-70MM",
+          "name": "Bit Behajto Pz2 S2 70Mm"
+        },
+        {
+          "shop_sku": "L37117",
+          "url": "https://piktor94.hu/BURKOLOVODOR-SZETT-RHR",
+          "name": "Burkolovodor Szett (Rhr)"
+        },
+        {
+          "shop_sku": "L38903",
+          "url": "https://piktor94.hu/CSAPOZSINOR-FESTA-2MM-50M-L38903-FEHER",
+          "name": "Csapozsinor Festa 2Mm 50M         L38903 Feher"
+        }
+      ]
+    },
+    {
+      "url": "https://piktor94.hu/Auto-karbantartas-tisztitas?infinite_page=2",
+      "displayed_product_count": 38,
+      "sampled_product_links": 38,
+      "products": [
+        {
+          "shop_sku": "674013",
+          "url": "https://piktor94.hu/DC-LAMPAFESTEK-NARANCS-lampabura-javito-festek",
+          "name": "Dc Lampafestek Narancs Lámpabúra Javító Festék"
+        },
+        {
+          "shop_sku": "23738160",
+          "url": "https://piktor94.hu/DC-LAMPAFESTEK-PIROS-150ML-lampabura-javito-festek",
+          "name": "Dc Lampafestek Piros 150Ml Lámpabúra Javító Festék"
+        },
+        {
+          "shop_sku": "000743",
+          "url": "https://piktor94.hu/MOTIP-AUTOSAMPON-ES-WAX-500ML",
+          "name": "Motip Autosampon És Wax 500Ml"
+        },
+        {
+          "shop_sku": "000735",
+          "url": "https://piktor94.hu/MOTIP-BOGAR-ELTAVOLITO-PUMPAS-500ML",
+          "name": "Motip Bogar Eltavolito Pumpas 500Ml"
+        },
+        {
+          "shop_sku": "000705",
+          "url": "https://piktor94.hu/MOTIP-BOGARELTAVOLITO-SPRAY-500ML",
+          "name": "Motip Bogareltavolito Spray  500Ml"
+        },
+        {
+          "shop_sku": "000754",
+          "url": "https://piktor94.hu/MOTIP-BORAPOLO-KENHETO-500ML",
+          "name": "Motip Borapolo Kenheto 500Ml"
+        },
+        {
+          "shop_sku": "000708",
+          "url": "https://piktor94.hu/MOTIP-BORAPOLO-SPARY-600ML",
+          "name": "Motip Borapolo Spary 600Ml"
+        },
+        {
+          "shop_sku": "04234",
+          "url": "https://piktor94.hu/MOTIP-BORFESTEK-BEZS-200ML",
+          "name": "Motip Bőrfesték Bézs 200Ml"
+        },
+        {
+          "shop_sku": "04233",
+          "url": "https://piktor94.hu/MOTIP-BORFESTEK-BEZS-BARNA-200ML",
+          "name": "Motip Bőrfesték Bézs-Barna 200Ml"
+        },
+        {
+          "shop_sku": "04230",
+          "url": "https://piktor94.hu/MOTIP-BORFESTEK-FEKETE-200ML",
+          "name": "Motip Bőrfesték Fekete 200Ml"
+        },
+        {
+          "shop_sku": "647291",
+          "url": "https://piktor94.hu/MOTIP-DC-TRANSZPARENT-LAMPAFESTEK-150ML-SARGA",
+          "name": "Motip Dc Transzparent Lampafestek 150Ml Sarga"
+        },
+        {
+          "shop_sku": "000712",
+          "url": "https://piktor94.hu/MOTIP-DEFEKT-JAVITO-500ML",
+          "name": "Motip Defekt Javito 500Ml"
+        },
+        {
+          "shop_sku": "000554",
+          "url": "https://piktor94.hu/MOTIP-GUMIAPOLO-HAB-500ML",
+          "name": "Motip Gumiapolo Hab 500Ml"
+        },
+        {
+          "shop_sku": "000711",
+          "url": "https://piktor94.hu/MOTIP-GUMIAPOLO-SPRAY-600ML",
+          "name": "Motip Gumiapolo Spray  600Ml"
+        },
+        {
+          "shop_sku": "000765",
+          "url": "https://piktor94.hu/MOTIP-GYANTA-ES-KATRANYELTAV-600ML",
+          "name": "Motip Gyanta Es Katranyeltav. 600Ml"
+        },
+        {
+          "shop_sku": "000710",
+          "url": "https://piktor94.hu/MOTIP-GYORSFENY-WAX-600ML",
+          "name": "Motip Gyorsfény Wax 600Ml"
+        },
+        {
+          "shop_sku": "090104",
+          "url": "https://piktor94.hu/MOTIP-IMPREGNALO-SPRAY-500ML",
+          "name": "Motip Impregnáló Spray 500Ml"
+        },
+        {
+          "shop_sku": "237342",
+          "url": "https://piktor94.hu/MOTIP-JEGOLDO-SPRAY-PUMPAS-500ML",
+          "name": "Motip Jegoldo Spray Pumpas 500Ml"
+        },
+        {
+          "shop_sku": "000713",
+          "url": "https://piktor94.hu/MOTIP-KEREKTARCSA-TISZTITO-AER-600ML",
+          "name": "Motip Kerektarcsa Tisztito Aer. 600Ml"
+        },
+        {
+          "shop_sku": "000732",
+          "url": "https://piktor94.hu/MOTIP-KEREKTARCSA-TISZTITO-PUMPAS-500ML",
+          "name": "Motip Kerektarcsa Tisztito Pumpas 500Ml"
+        },
+        {
+          "shop_sku": "000742",
+          "url": "https://piktor94.hu/MOTIP-KROMTISZTITO-500ML",
+          "name": "Motip Kromtisztito 500Ml"
+        },
+        {
+          "shop_sku": "000753",
+          "url": "https://piktor94.hu/MOTIP-LOKH-FELU-POLIR-BUMP-B-500ML",
+          "name": "Motip Lokh. Felu. Polir (Bump. B) 500Ml"
+        },
+        {
+          "shop_sku": "000709",
+          "url": "https://piktor94.hu/MOTIP-MUA-GUMIAPOLO-ES-KOND-SPRAY-600ML",
+          "name": "Motip Mua Gumiapolo Es Kond. Spray 600Ml"
+        },
+        {
+          "shop_sku": "000781",
+          "url": "https://piktor94.hu/MOTIP-MUSZEFALAPOLO-NARANCS-600ML",
+          "name": "Motip Műszefalápoló Narancs 600Ml"
+        },
+        {
+          "shop_sku": "000701",
+          "url": "https://piktor94.hu/MOTIP-MUSZERFAL-APOLO-SELYEMF-600ML",
+          "name": "Motip Műszerfal Ápoló Selyemf. 600Ml"
+        },
+        {
+          "shop_sku": "000785",
+          "url": "https://piktor94.hu/MOTIP-MUSZERFAL-APOLO-VOROSAF-600ML",
+          "name": "Motip Műszerfal Ápoló Vörösáf. 600Ml"
+        },
+        {
+          "shop_sku": "000784",
+          "url": "https://piktor94.hu/MOTIP-MUSZERFALAPOLO-ALMA-600ML-000784",
+          "name": "Motip Műszerfalápoló Alma 600Ml"
+        },
+        {
+          "shop_sku": "000702",
+          "url": "https://piktor94.hu/MOTIP-MUSZERFALAPOLO-HAB-600ML-VIZES-BAZISU",
+          "name": "Motip Muszerfalapolo Hab  600Ml Vizes Bazisu"
+        },
+        {
+          "shop_sku": "000780",
+          "url": "https://piktor94.hu/MOTIP-MUSZERFALAPOLO-LEVENDULA-600ML",
+          "name": "Motip Műszerfalapolo Levendula 600Ml"
+        },
+        {
+          "shop_sku": "000782",
+          "url": "https://piktor94.hu/MOTIP-MUSZERFALAPOLO-VANILIA-600ML",
+          "name": "Motip Muszerfalapolo Vanilia  600Ml"
+        },
+        {
+          "shop_sku": "000783",
+          "url": "https://piktor94.hu/MOTIP-MUSZERFALAPOLO-VIRAG-600ML",
+          "name": "Motip Muszerfalapolo Virag  600Ml"
+        },
+        {
+          "shop_sku": "000745D",
+          "url": "https://piktor94.hu/MOTIP-SCRATCH-AWAY-KARCELTAVOLITO-250ML",
+          "name": "Motip Scratch Away Karceltavolito 250Ml"
+        },
+        {
+          "shop_sku": "23738159",
+          "url": "https://piktor94.hu/MOTIP-SZELLOZOREND-ES-LEGKONDI-150ML-FRISS-NARANCS",
+          "name": "Motip Szellozorend. Es Legkondi 150Ml Friss Narancs"
+        },
+        {
+          "shop_sku": "000707",
+          "url": "https://piktor94.hu/MOTIP-TEXTILTISZTITO-AER-600ML",
+          "name": "Motip Textiltisztito Aer. 600Ml"
+        },
+        {
+          "shop_sku": "090511",
+          "url": "https://piktor94.hu/MOTIP-UNIVERZALIS-TISZTITOHAB",
+          "name": "Motip Univerzalis Tisztitohab"
+        },
+        {
+          "shop_sku": "237381543",
+          "url": "https://piktor94.hu/MOTIP-ZAR-JEGOLDO-75ML",
+          "name": "Motip Zar-Jegoldo 75Ml"
+        },
+        {
+          "shop_sku": "000740",
+          "url": "https://piktor94.hu/MOTIP-AUTOPOLIR-ES-WAX-500ML",
+          "name": "Motip Autopolir Es Wax 500Ml"
+        },
+        {
+          "shop_sku": "000730",
+          "url": "https://piktor94.hu/MOTIP-PARAMENTESITO-PUMPAS-500ML",
+          "name": "Motip Paramentesito Pumpas 500Ml"
+        }
+      ]
+    },
+    {
+      "url": "https://piktor94.hu/Spatulyak-glettvasak",
+      "displayed_product_count": 123,
+      "sampled_product_links": 20,
+      "products": [
+        {
+          "shop_sku": "S50608",
+          "url": "https://piktor94.hu/SCHU-SPATULYA-KESZLET-3DB-OS-KAROSSZERIAHOZ",
+          "name": "3 Kyoto Car Set Karosszériaspatulya Szett, 3Db-Os (6,10,"
+        },
+        {
+          "shop_sku": "S50110",
+          "url": "https://piktor94.hu/SCHU-SPAKLI-JAPAN-SZETT-4DB-OS",
+          "name": "4 Kyoto Car Metal Set Japánspatulya Szett, 4Db-Os (50, 80, 100"
+        },
+        {
+          "shop_sku": "S40211",
+          "url": "https://piktor94.hu/SCHU-SPAKLI-KAPARO-10CM-POTPEN-5DB-ONKISZOLGALO-CS",
+          "name": "5 Kai Muro Ran 5 Pótpenge Nyíróspatulyához (40200-Hoz),"
+        },
+        {
+          "shop_sku": "S30450",
+          "url": "https://piktor94.hu/SCHU-UNIV-KES-NAGY-ELVEDOVEL",
+          "name": "Formosa 18Mm Vágókés, Fém Pengevezető"
+        },
+        {
+          "shop_sku": "S50707",
+          "url": "https://piktor94.hu/SCHU-SPATULYA-ROZSDAMENTES-100MM-MUA-NYELLEL",
+          "name": "Kai 2K 100Mm Festőspatulya Profi, Rozsdamentes"
+        },
+        {
+          "shop_sku": "S50708",
+          "url": "https://piktor94.hu/SCHU-SPATULYA-ROZSDAMENTES-125MM-MUA-NYELLEL",
+          "name": "Kai 2K 125Mm Festőspatulya Profi, Rozsdamentes"
+        },
+        {
+          "shop_sku": "S50702",
+          "url": "https://piktor94.hu/SCHU-SPATULYA-ROZSDAMENTES-32MM-MUA-NYELLEL",
+          "name": "Kai 2K 32Mm Festőspatulya Profi, Rozsdamentes"
+        },
+        {
+          "shop_sku": "S50704",
+          "url": "https://piktor94.hu/SCHU-SPATULYA-ROZSDAMENTES-50MM-MUA-NYELLEL",
+          "name": "Kai 2K 50Mm Festőspatulya Profi, Rozsdamentes"
+        },
+        {
+          "shop_sku": "S50706",
+          "url": "https://piktor94.hu/SCHU-SPATULYA-ROZSDAMENTES-75MM-MUA-NYELLEL",
+          "name": "Kai 2K 75Mm Festőspatulya Profi, Rozsdamentes"
+        },
+        {
+          "shop_sku": "S50150",
+          "url": "https://piktor94.hu/SCHU-SPAKLI-GIPSZKARTON-15CM-S50150",
+          "name": "Kai 2K Bit 150Mm Gipszkarton Spatulya Csavarhúzóval, Rozs"
+        },
+        {
+          "shop_sku": "S50086",
+          "url": "https://piktor94.hu/SCHU-SPAKLI-ROZSDAM-TOBBFUNKCIOS",
+          "name": "Kai 5 In One 2K Multifunkciós Spatulya, 75Mm, Rozsdament"
+        },
+        {
+          "shop_sku": "S50080",
+          "url": "https://piktor94.hu/SCHU-SPAKLI-UVEGEZO",
+          "name": "Kai Patch Gittkés / Üvegező Spatulya"
+        },
+        {
+          "shop_sku": "S50085",
+          "url": "https://piktor94.hu/SCHU-SPAKLI-CSOKAPARO",
+          "name": "Kai Vario Multifunkciós Spatulya, 65Mm, Rozsdament"
+        },
+        {
+          "shop_sku": "S50371",
+          "url": "https://piktor94.hu/SCU-FOGAZOTT-SPATULYA-18CM-A1",
+          "name": "Karo A1 18Cm Fogazott Spatulya, Rozsdamentes"
+        },
+        {
+          "shop_sku": "S50372",
+          "url": "https://piktor94.hu/SCHU-SPAKLI-FOG-18CM-A2",
+          "name": "Karo A2 18Cm Fogazott Spatulya, Rozsdamentes"
+        },
+        {
+          "shop_sku": "S50400",
+          "url": "https://piktor94.hu/SCHU-MUA-SPAKLI-FOG-90x130MM-4-OLDALON-FOGAZOTT",
+          "name": "Karo Synt 90X130Mm Fogazott Spatulya, Műanyag"
+        },
+        {
+          "shop_sku": "S50122",
+          "url": "https://piktor94.hu/SCHU-SPAKLI-JAPAN-FA-160MM",
+          "name": "Kyoto 160Mm Japánspatulya, Rozsdamentes, Fa Nyéllel"
+        },
+        {
+          "shop_sku": "S50610",
+          "url": "https://piktor94.hu/SCHU-MUA-SPAKLI-KAROSSZERIAHOZ-FEKETE-8x12CM",
+          "name": "Kyoto Car 80X120Mm Black Karosszériaspatulya, Oldószerálló Kemény"
+        },
+        {
+          "shop_sku": "S30900",
+          "url": "https://piktor94.hu/SCHU-TAPETA-SIMITO-MUANYAG-230X120MM-NARANCS",
+          "name": "Magic Press 23X12Cm Tapétasimító, Műanyag, Trapéz Alakú"
+        },
+        {
+          "shop_sku": "S50071",
+          "url": "https://piktor94.hu/SCHU-SPAKLI-FALI-20CM",
+          "name": "Plano 20Cm Fali Spatulya, Rozsdamentes, Fa Markolat"
+        }
+      ]
+    }
+  ]
+}

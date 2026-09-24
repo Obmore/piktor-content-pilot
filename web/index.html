@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Piktor 94 · Termékadat-minta</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script>
+  <script defer src="supplier-data.js"></script>
+  <script defer src="engine.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Ugrás a tartalomra</a>
+  <header class="site-header"><div class="wrap"><strong>PIKTOR 94</strong><span>Termékadat-minta</span></div></header>
+  <main id="main" class="wrap">
+    <nav class="breadcrumb" aria-label="Útvonal"><a href="https://piktor94.hu" target="_blank" rel="noopener noreferrer">Piktor 94</a><span>/</span><span>Schuller termékek</span><span>/</span><span>Spatulyák, glettvasak</span></nav>
+    <div class="page-heading"><h1>Termékleírások és hiányzó adatok</h1><p id="observed-at"></p></div>
+    <section class="toolbar" aria-label="Adatfeldolgozás">
+      <div><strong id="supplier-label">Gyártói adatok: beépített minta</strong><p id="supplier-summary">A feldolgozás cikkszám alapján párosít, és csak forrással rendelkező adatot használ.</p></div>
+      <div class="toolbar-actions"><label class="button secondary file-button">Gyártói JSON betöltése<input id="supplier-file" type="file" accept=".json,application/json"></label><button id="process-button" class="button" type="button">Adatok feldolgozása</button><button id="export-button" class="button secondary" type="button" disabled>Eredmény letöltése</button></div>
+    </section>
+    <p id="message" class="message" role="status" aria-live="polite">A szövegjavaslatok előállításához indítsa el a feldolgozást.</p>
+    <div id="load-error" class="error-box" hidden role="alert"></div>
+    <div class="tabs" role="tablist" aria-label="Nézetek">
+      <button id="tab-product" class="active" role="tab" aria-selected="true" aria-controls="panel-product" data-tab="product">Termékoldal</button>
+      <button id="tab-processing" role="tab" aria-selected="false" aria-controls="panel-processing" tabindex="-1" data-tab="processing">Feldolgozás</button>
+      <button id="tab-category" role="tab" aria-selected="false" aria-controls="panel-category" tabindex="-1" data-tab="category">Kategória</button>
+    </div>
+    <section id="panel-product" role="tabpanel" aria-labelledby="tab-product">
+      <div class="product-layout">
+        <aside class="product-sidebar"><label for="product-search">Termék keresése</label><input id="product-search" type="search" placeholder="Név vagy cikkszám…"><div id="product-list" class="product-list"></div></aside>
+        <article class="product-content">
+          <div class="product-heading"><div><p id="product-brand" class="muted"></p><h2 id="product-name"></h2></div><span id="match-status" class="badge"></span></div>
+          <p class="sku-line">Webshop-cikkszám: <strong id="shop-sku"></strong><span>Gyártói cikkszám: <strong id="manufacturer-sku"></strong></span></p>
+          <a id="shop-link" class="external-link" target="_blank" rel="noopener noreferrer">Meglévő termékoldal ↗</a>
+          <div class="product-overview">
+            <section class="image-panel" aria-labelledby="image-title">
+              <h3 id="image-title">Termékkép</h3>
+              <div id="image-frame" class="image-frame"><p id="image-placeholder">A termékkép nincs betöltve.</p><img id="product-image" hidden alt=""></div>
+              <p id="image-status" class="image-status small muted" role="status" aria-live="polite"></p>
+              <button id="retry-image-button" class="button secondary" type="button" hidden>Kép újrapróbálása</button>
+              <button id="load-image-button" class="button secondary" type="button">Meglévő kép megnyitása</button>
+              <button id="load-manufacturer-image-button" class="button secondary" type="button" hidden>Gyártói kép megnyitása</button>
+              <p id="manufacturer-image-info" class="small muted" hidden></p>
+              <label class="button secondary file-button">Helyi kép vizsgálata<input id="image-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif"></label>
+              <p class="small muted">A megnyitás nem igazolja a kép felhasználási jogát. Helyi fájl választásakor a kép a böngészőben marad.</p>
+              <div id="image-result" class="image-result"></div>
+            </section>
+            <section class="description-panel" aria-labelledby="description-title"><h3 id="description-title">Előállított termékleírás</h3><p id="output-placeholder" class="muted">A feldolgozás után itt jelenik meg a gyártói adatokból összeállított szöveg.</p><div id="generated-content" hidden><h4>Rövid leírás</h4><div id="proposed-short" class="prose"></div><h4>Részletes leírás</h4><div id="proposed-long" class="prose"></div></div><details id="processing-messages" class="notice" hidden><summary>Feldolgozási megjegyzések</summary><div id="processing-message-body"></div></details></section>
+          </div>
+          <section class="current-description"><h3>A meglévő oldal megfigyelése</h3><div id="current-description" class="prose"></div><p class="small muted">Nyilvános oldalon tett megfigyelés; nem az UNAS-adminisztráció mezőinek exportja.</p></section>
+          <div class="evidence-grid"><section><h3>Felhasznált adatok</h3><dl id="fact-list" class="fact-list"></dl><p id="shipping-weight"></p></section><section><h3 id="observation-title">A korábbi adatfelvétel megjegyzései</h3><p class="small muted">A jelenlegi feldolgozás eredményét a Felhasznált adatok mutatják.</p><ul id="unknown-list"></ul></section></div>
+          <section class="sources"><h3>Források</h3><ul id="source-list"></ul></section>
+          <details class="review-panel"><summary>Szöveg ellenőrzésének rögzítése</summary><label for="reviewer-name">Ellenőrző neve</label><input id="reviewer-name" type="text" maxlength="120" autocomplete="name"><label class="checkbox-label"><input id="source-confirmation" type="checkbox">Megnyitottam a forrásokat, és ellenőriztem ezt a szövegjavaslatot.</label><button id="review-button" class="button secondary" type="button">Ellenőrzés rögzítése</button><p id="review-message" class="small" role="status"></p></details>
+        </article>
+      </div>
+    </section>
+    <section id="panel-processing" role="tabpanel" aria-labelledby="tab-processing" hidden>
+      <h2>Feldolgozási eredmény</h2><p>A webshop-cikkszámok és a gyártói rekordok párosítása, a kihagyott adatok és az előállított tartalom.</p>
+      <div class="table-scroll"><table><thead><tr><th>Webshop-cikkszám</th><th>Gyártói cikkszám</th><th>Állapot</th><th>Megjegyzés</th></tr></thead><tbody id="processing-rows"></tbody></table></div>
+      <div class="input-output"><details><summary>Betöltött gyártói adatok</summary><pre id="supplier-json"></pre></details><details><summary>Előállított adatok</summary><pre id="output-json">Még nem futott feldolgozás.</pre></details></div>
+      <p class="small muted">A letölthető JSON szövegjavaslatokat és forráshivatkozásokat tartalmaz. Nem közvetlen UNAS-importfájl, és nem módosítja a webshopot.</p>
+      <section class="image-rules"><h3>A képvizsgálat szabályai</h3><p>A böngésző a megnyitott képfájl valódi szélességét és magasságát méri. A HTML-ben feltüntetett méret nem tekinthető fájlmérésnek. Fájlméret helyi kép esetén mérhető.</p><p>2026-ban a nem ruházati termékek képeinél 100 × 100 px a minimum. 2027. január 31-től 500 × 500 px lesz a minimum; erre már 2026-ban figyelmeztetés jelenhet meg. A megfelelés további feltételeit és a tényleges Merchant Center-üzenetet külön kell ellenőrizni.</p><a href="https://support.google.com/merchants/answer/12159030?hl=en" target="_blank" rel="noopener noreferrer">Google: a képkövetelmények változása ↗</a></section>
+    </section>
+    <section id="panel-category" role="tabpanel" aria-labelledby="tab-category" hidden><h2>Kategórialeírás-minta</h2><p>Rögzített, forrásokkal alátámasztott szövegminta a kiválasztott kategóriához.</p><div id="category-content"></div></section>
+    <footer><span>Piktor 94 · Termékadat-minta</span><button id="print-button" type="button">Nyomtatás / PDF</button></footer>
+  </main>
+</body>
+</html>
